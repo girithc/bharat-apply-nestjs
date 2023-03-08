@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  dev:
+    image: postgres:15
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: gchoudhary
+      POSTGRES_PASSWORD: jewXab-dacwu7-wiwdad
+      POSTGRES_DB: bharatapplydb
+    networks: 
+      - bharatapply
+
+networks:
+  bharatapply:
