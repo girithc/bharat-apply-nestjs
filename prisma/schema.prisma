@@ -15,12 +15,16 @@ model User {
   createAt  DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  email String
+  email String @unique
   hash  String
 
   firstName  String
   lastName   String
   middleName String?
+
+  applications Application[]
+
+  @@map("users")
 }
 
 model Application {
@@ -31,4 +35,9 @@ model Application {
   title       String
   description String?
   link        String
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  @@map("applications")
 }
