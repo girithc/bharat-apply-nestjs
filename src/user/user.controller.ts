@@ -4,9 +4,8 @@ import {
   Patch,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { JwtGuard } from '../auth/guard';
-import { GetUser } from 'src/auth/decorator';
+import { GetUser } from '../auth/decorator/getUser.decorator';
 import { User } from '@prisma/client';
 
 @UseGuards(JwtGuard)
@@ -20,7 +19,4 @@ export class UserController {
     console.log(email);
     return user;
   }
-
-  @Patch()
-  editUser() {}
 }
