@@ -7,7 +7,6 @@ import {
   EditApplicationDto,
 } from './dto';
 import { PrismaService } from '../prisma/prisma.service';
-import { application } from 'express';
 
 @Injectable()
 export class ApplicationService {
