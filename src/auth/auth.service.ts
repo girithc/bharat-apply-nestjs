@@ -111,7 +111,7 @@ export class AuthService {
     userId: number,
     email: string,
   ): Promise<{
-    access_token: string;
+    accessToken: string;
     refreshToken: string;
   }> {
     const [accessToken, refreshToken] =
@@ -144,10 +144,43 @@ export class AuthService {
       ]);
 
     return {
-      access_token: accessToken,
+      accessToken: accessToken,
       refreshToken: refreshToken,
     };
   }
+
+  /*
+  async refreshTokens(
+    userId: number,
+    refreshToken: string,
+  ) {
+    const user = await this.user.findById(
+      userId,
+    );
+    if (!user || !user.refreshToken)
+      throw new ForbiddenException(
+        'Access Denied',
+      );
+    const refreshTokenMatches =
+      await argon2.verify(
+        user.refreshToken,
+        refreshToken,
+      );
+    if (!refreshTokenMatches)
+      throw new ForbiddenException(
+        'Access Denied',
+      );
+    const tokens = await this.getTokens(
+      user.id,
+      user.username,
+    );
+    await this.updateRefreshToken(
+      user.id,
+      tokens.refreshToken,
+    );
+    return tokens;
+  }
+  */
 
   hashData(data: string) {
     return argon.hash(data);
