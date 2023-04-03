@@ -9,6 +9,7 @@ import { AuthDto, AuthDtoSignup } from './dto';
 import * as argon from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class AuthService {
@@ -16,11 +17,14 @@ export class AuthService {
     private prisma: PrismaService,
     private jwt: JwtService,
     private config: ConfigService,
+    private user: UserService,
   ) {}
 
   async signup(dto: AuthDtoSignup) {
     //generate password
-    const hash = await argon.hash(dto.password);
+    const hash = await this.hashData(
+      dto.password,
+    );
     //save the user in the db
 
     try {
@@ -32,17 +36,22 @@ export class AuthService {
           hash,
         },
       });
-      //return the saved user
-      delete user.hash;
-      return this.signToken(user.id, user.email);
-      //return user;
+      const tokens = await this.getTokens(
+        user.id,
+        user.email,
+      );
+      await this.updateRefreshToken(
+        user.id,
+        tokens.refreshToken,
+      );
+      return tokens;
     } catch (error) {
       if (error.code === 'P2002') {
         throw new ForbiddenException(
           'Credentials Taken',
         );
       }
-      return { msg: 'helloworld' };
+      return { error: 'Unknown Error' };
     }
   }
 
@@ -70,31 +79,77 @@ export class AuthService {
       );
     }
 
-    delete user.hash;
-    return this.signToken(user.id, user.email);
-    //return user;
+    const tokens = await this.getTokens(
+      user.id,
+      user.email,
+    );
+    await this.updateRefreshToken(
+      user.id,
+      tokens.refreshToken,
+    );
+    return tokens;
   }
 
-  async signToken(
+  async logout(userId: number) {
+    return this.user.editUser(userId, {
+      refreshToken: null,
+    });
+  }
+
+  async updateRefreshToken(
+    userId: number,
+    refreshToken: string,
+  ) {
+    const hashedRefreshToken =
+      await this.hashData(refreshToken);
+    await this.user.editUser(userId, {
+      refreshToken: hashedRefreshToken,
+    });
+  }
+
+  async getTokens(
     userId: number,
     email: string,
-  ): Promise<{ access_token: string }> {
-    const payload = {
-      sub: userId,
-      email,
-    };
-    const secret = this.config.get('JWT_SECRET');
-
-    const token = await this.jwt.signAsync(
-      payload,
-      {
-        expiresIn: '15m',
-        secret: secret,
-      },
-    );
+  ): Promise<{
+    access_token: string;
+    refreshToken: string;
+  }> {
+    const [accessToken, refreshToken] =
+      await Promise.all([
+        this.jwt.signAsync(
+          {
+            sub: userId,
+            email,
+          },
+          {
+            secret:
+              this.config.get<string>(
+                'JWT_SECRET',
+              ),
+            expiresIn: '15m',
+          },
+        ),
+        this.jwt.signAsync(
+          {
+            sub: userId,
+            email,
+          },
+          {
+            secret: this.config.get<string>(
+              'JWT_REFRESH_SECRET',
+            ),
+            expiresIn: '1d',
+          },
+        ),
+      ]);
 
     return {
-      access_token: token,
+      access_token: accessToken,
+      refreshToken: refreshToken,
     };
+  }
+
+  hashData(data: string) {
+    return argon.hash(data);
   }
 }
