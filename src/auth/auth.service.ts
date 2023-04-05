@@ -149,20 +149,17 @@ export class AuthService {
     };
   }
 
-  /*
   async refreshTokens(
-    userId: number,
+    email: string,
     refreshToken: string,
   ) {
-    const user = await this.user.findById(
-      userId,
-    );
+    const user = await this.user.findById(email);
     if (!user || !user.refreshToken)
       throw new ForbiddenException(
         'Access Denied',
       );
     const refreshTokenMatches =
-      await argon2.verify(
+      await argon.verify(
         user.refreshToken,
         refreshToken,
       );
@@ -172,7 +169,7 @@ export class AuthService {
       );
     const tokens = await this.getTokens(
       user.id,
-      user.username,
+      user.email,
     );
     await this.updateRefreshToken(
       user.id,
@@ -180,7 +177,6 @@ export class AuthService {
     );
     return tokens;
   }
-  */
 
   hashData(data: string) {
     return argon.hash(data);

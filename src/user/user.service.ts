@@ -22,4 +22,17 @@ export class UserService {
     delete user.hash;
     return user;
   }
+
+  async findById(email: string) {
+    const user =
+      await this.prisma.user.findUnique({
+        where: {
+          email: email,
+        },
+      });
+
+    delete user.hash;
+
+    return user;
+  }
 }

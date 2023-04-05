@@ -9,7 +9,10 @@ import {
   UseGuards,
 } from '@nestjs/common';
 
-import { JwtGuard } from '../auth/guard';
+import {
+  JwtGuard,
+  JwtRefreshTokenGuard,
+} from '../auth/guard';
 import { AuthService } from './auth.service';
 import { AuthDto, AuthDtoSignup } from './dto';
 import { Request } from 'express';
@@ -32,5 +35,17 @@ export class AuthController {
   @Get('logout')
   logout(@Req() req: Request) {
     this.authService.logout(req.user['sub']);
+  }
+
+  @UseGuards(JwtRefreshTokenGuard)
+  @Get('refresh')
+  refreshTokens(@Req() req: Request) {
+    const userId = req.user['user'].email;
+    const refreshToken = req.user['refreshToken'];
+
+    return this.authService.refreshTokens(
+      userId,
+      refreshToken,
+    );
   }
 }
