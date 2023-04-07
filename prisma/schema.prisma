@@ -25,6 +25,7 @@ model User {
   refreshToken String?
 
   applications Application[]
+  tokens Token[]
 
   @@map("users")
 }
@@ -41,5 +42,31 @@ model Application {
   userId Int
   user   User? @relation(fields: [userId], references: [id])
 
+  //tokens Token[]
+
   @@map("applications")
+}
+
+
+model Token {
+  id        Int      @id @default(autoincrement())
+  createAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title       String
+  description String?
+  link        String?
+
+  userId Int
+  user   User? @relation(fields: [userId], references: [id])
+  
+  //applicationId Int
+  //application Application? @relation(fields: [applicationId], references: [id])
+
+  
+
+  prompt String
+  response String?
+
+  @@map("tokens")
 }
