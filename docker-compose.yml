@@ -8,8 +8,24 @@ services:
       POSTGRES_USER: gchoudhary
       POSTGRES_PASSWORD: jewXab-dacwu7-wiwdad
       POSTGRES_DB: bharatapplydb
-    networks: 
+    networks:
       - bharatapply
+    volumes:
+      - /var/lib/postgres
+
+  nest-cloud-run:
+    image: nest-cloud-run
+    environment:
+      POSTGRES_USER: gchoudhary
+      POSTGRES_PASSWORD: jewXab-dacwu7-wiwdad
+      POSTGRES_DB: bharatapplydb
+    ports:
+      - '3000:3000'
+    depends_on:
+      - dev
+    networks:
+      - bharatapply
+
   test:
     image: postgres:15
     ports:
@@ -18,7 +34,9 @@ services:
       POSTGRES_USER: gchoudhary
       POSTGRES_PASSWORD: jewXab-dacwu7-wiwdad
       POSTGRES_DB: bharatapplydb
-    networks: 
+    networks:
       - bharatapply
+
 networks:
   bharatapply:
+    driver: bridge
