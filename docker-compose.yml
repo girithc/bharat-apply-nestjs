@@ -23,6 +23,8 @@ services:
       - '3000:3000'
     depends_on:
       - dev
+    volumes:
+      - './.env:/usr/src/app/.env'
     networks:
       - bharatapply
 
