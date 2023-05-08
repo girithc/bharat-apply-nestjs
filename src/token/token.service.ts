@@ -1,26 +1,75 @@
 import {
   ForbiddenException,
-  Injectable,
+  Injectable
 } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateTokenDto } from './dto';
+import { ConfigService } from '@nestjs/config';
+import { HttpModule, HttpService } from '@nestjs/axios'
+import { map } from 'rxjs';
+import { AxiosResponse } from 'axios';
+
 
 @Injectable()
 export class TokenService {
-  constructor(private prisma: PrismaService) {}
+
+  
+  private openaiUrl: string = 'https://api.openai.com/v1/completions';
+  
+  constructor(private config: ConfigService, 
+    private http: HttpService,
+    private prisma: PrismaService) {
+  }
+
+        
+  openaiHeaderDict = {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.config.get('OPEN_API_KEY'),
+    };
 
   async createToken(
     userId: number,
     dto: CreateTokenDto,
   ) {
-    const token = await this.prisma.token.create({
-      data: {
-        userId,
-        ...dto,
-      },
-    });
+     
+    const data = {
+      "model": "curie",             
+      "prompt": dto.prompt,
+      "max_tokens": 100,
+      "temperature": 0.4
+    }
+  
+    var response = '';
 
-    return token;
+
+    this.http.post(this.openaiUrl, data, { headers: this.openaiHeaderDict }).subscribe({
+      next: async (res) => {
+        console.log(res.data["choices"]);
+        //console.log(res.data["choices"][0]["text"]);
+        //console.log(typeof(res.data["choices"][0]["text"]))
+        response = res.data["choices"][0]["text"];
+        dto.response = response;
+        console.log('Create dto: ', dto);
+        console.log('Response: ', response);
+        console.log('dto ended');
+
+
+        const token = await this.prisma.token.create({
+          data: {
+            userId,
+            ...dto,
+          },
+        });
+
+         return token;
+
+      },
+      error: (err) => {
+
+      }
+    })
+
+    
   }
 
   async getTokenById(
