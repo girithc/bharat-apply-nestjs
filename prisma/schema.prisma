@@ -26,6 +26,7 @@ model User {
 
   applications Application[]
   tokens Token[]
+  healthProfile HealthProfile[]
 
   @@map("users")
 }
@@ -69,4 +70,21 @@ model Token {
   response String?
 
   @@map("tokens")
+}
+
+model HealthProfile {
+  id Int @id @default(autoincrement())
+  createAt DateTime @default(now())
+  updatedAt DateTime
+
+  userId Int
+  user   User? @relation(fields: [userId], references: [id])
+
+  age Int
+  gender String
+  height Float?
+  weight Float?
+
+
+  active Boolean
 }
