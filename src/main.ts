@@ -11,8 +11,10 @@ async function bootstrap() {
   );
   app.enableCors({
     origin: ['https://bharat-apply.herokuapp.com', '/\.bharat-apply.herokuapp\.com$/','http://localhost:4200'],
-    methods: ['GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'],
-    allowedHeaders: "Content-Type, Access-Control-Allow-Headers, X-Requested-With",
+    methods: ['GET,HEAD,PUT,PATCH,POST,DELETE'],
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    exposedHeaders: ['Content-Range', 'X-Content-Range'],
     optionsSuccessStatus: 210,
   });
   await app.listen((process.env.PORT || 3000));
