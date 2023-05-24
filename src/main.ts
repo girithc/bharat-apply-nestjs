@@ -10,7 +10,7 @@ async function bootstrap() {
     }),
   );
   app.enableCors({
-    origin: '*',
+    origin: 'http://bharatapply-backend.com/' && 'http://localhost:3000/',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: "Content-Type, Accept",
     optionsSuccessStatus: 210,
