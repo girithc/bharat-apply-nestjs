@@ -33,9 +33,9 @@ export class TokenService {
   ) {
      
     const data = {
-      "model": "curie",             
+      "model": "ada",             
       "prompt": dto.prompt,
-      "max_tokens": 100,
+      "max_tokens": 50,
       "temperature": 0.4
     }
   

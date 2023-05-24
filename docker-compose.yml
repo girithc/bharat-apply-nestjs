@@ -13,8 +13,8 @@ services:
     volumes:
       - /var/lib/postgres
 
-  nest-cloud-run:
-    image: nest-cloud-run
+  nest-cloud:
+    image: public.ecr.aws/j6d7o9j2/nest-cloud-run
     environment:
       POSTGRES_USER: gchoudhary
       POSTGRES_PASSWORD: jewXab-dacwu7-wiwdad
