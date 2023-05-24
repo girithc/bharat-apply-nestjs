@@ -10,7 +10,7 @@ async function bootstrap() {
     }),
   );
   app.enableCors({
-    origin: ['https://bharat-apply.herokuapp.com/','http://localhost:4200/'],
+    origin: ['https://bharat-apply.herokuapp.com','http://localhost:4200/'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: "Content-Type, Accept",
     optionsSuccessStatus: 210,
