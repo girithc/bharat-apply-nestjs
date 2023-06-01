@@ -5,16 +5,20 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Options,
   Param,
   ParseIntPipe,
   Post,
+  Response,
   UseGuards,
+  Header
 } from '@nestjs/common';
 import { JwtGuard } from 'src/auth/guard';
 import { TokenService } from './token.service';
 
 import { CreateTokenDto } from './dto';
 import { GetUser } from 'src/auth/decorator';
+import { response } from 'express';
 
 @UseGuards(JwtGuard)
 @Controller('token')
@@ -35,9 +39,23 @@ export class TokenController {
   }
 
   @Get()
+  @Header('Access-Control-Allow-Origin','*')
   getTokens(@GetUser('id') userId: number) {
+    console.log('getTokens');
     return this.tokenService.getTokens(userId);
   }
+
+  @Options()
+  @Header('Access-Control-Allow-Origin','*')
+  @Header('Access-Control-Allow-Headers','*')
+  @Header('Access-Control-Allow-Methods','*')
+  getTokens_options() {
+    let temp = Response
+    return temp
+  }
+
+
+
   @Get('recent')
   getMostRecentToken(
     @GetUser('id') userId: number,
@@ -58,6 +76,8 @@ export class TokenController {
       tokenId,
     );
   }
+
+
 
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
