@@ -68,8 +68,16 @@ export class TokenService {
          return token;
 
       },
-      error: (err) => {
+      error: async (err) => {
         console.log('ERROR IN SENDING POST REQUEST TO OPEN AI');
+        const token = await this.prisma.token.create({
+          data: {
+            userId,
+            ...dto,
+          },
+        });
+
+         return token;
         
       }
     })
