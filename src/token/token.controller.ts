@@ -42,18 +42,9 @@ export class TokenController {
   @Header('Access-Control-Allow-Origin','*')
   getTokens(@GetUser('id') userId: number) {
     console.log('getTokens');
-    return this.tokenService.getTokens(userId);
+    this.tokenService.getTokens(userId);
+    console.log('completed getTokens');
   }
-
-  @Options()
-  @Header('Access-Control-Allow-Origin','*')
-  @Header('Access-Control-Allow-Headers','*')
-  @Header('Access-Control-Allow-Methods','*')
-  getTokens_options() {
-    let temp = Response
-    return temp
-  }
-
 
 
   @Get('recent')
