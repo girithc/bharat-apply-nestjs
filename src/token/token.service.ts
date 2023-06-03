@@ -8,6 +8,7 @@ import { ConfigService } from '@nestjs/config';
 import { HttpModule, HttpService } from '@nestjs/axios'
 import { map } from 'rxjs';
 import { AxiosResponse } from 'axios';
+import { Console } from 'console';
 
 
 @Injectable()
@@ -67,7 +68,8 @@ export class TokenService {
 
       },
       error: (err) => {
-
+        console.log('ERROR IN SENDING POST REQUEST TO OPEN AI');
+        
       }
     })
 
