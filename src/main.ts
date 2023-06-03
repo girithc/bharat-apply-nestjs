@@ -10,7 +10,7 @@ async function bootstrap() {
     }),
   );
   app.enableCors({
-    origin: ['https://bharat-apply.herokuapp.com', '/\.bharat-apply.herokuapp\.com$/', 'https://bharatapply-backend.herokuapp.com/token', '/\.bharat-apply-backend.herokuapp\.com/token$/','http://localhost:4200'],
+    origin: ['https://bharat-apply.herokuapp.com', '/\.bharat-apply.herokuapp\.com$/', 'https://bharatapply-backend.herokuapp.com/token', '/\.bharat-apply-backend.herokuapp\.com/token$/','http://localhost:4200', 'https://api.openai.com/v1/completions'],
     methods: ['GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS'],
     credentials: true,
 //    allowedHeaders: ['Content-Type', 'Authorization'],
