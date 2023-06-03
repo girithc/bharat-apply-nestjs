@@ -25,7 +25,7 @@ export class TokenService {
         
   openaiHeaderDict = {
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.config.get('OPEN_API_KEY'),
+      Authorization: 'Bearer ' + this.config.get("OPEN_API_KEY"),
     };
 
   async createToken(
@@ -44,6 +44,7 @@ export class TokenService {
   
     var response = '';
 
+    console.log('open ai (api headers): ',this.openaiHeaderDict);
 
     this.http.post(this.openaiUrl, data, { headers: this.openaiHeaderDict }).subscribe({
       next: async (res) => {
