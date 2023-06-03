@@ -11,7 +11,7 @@ async function bootstrap() {
   );
   app.enableCors({
     origin: ['https://bharat-apply.herokuapp.com', '/\.bharat-apply.herokuapp\.com$/', 'https://bharatapply-backend.herokuapp.com/token','http://localhost:4200'],
-    methods: ['GET,HEAD,PUT,PATCH,POST,DELETE'],
+    methods: ['GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS'],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'],
     exposedHeaders: ['Content-Range', 'X-Content-Range'],
