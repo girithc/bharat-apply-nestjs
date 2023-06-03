@@ -32,6 +32,7 @@ export class TokenController {
     @GetUser('id') userId: number,
     @Body() dto: CreateTokenDto,
   ) {
+    console.log('createTokens');
     return this.tokenService.createToken(
       userId,
       dto,
@@ -42,8 +43,7 @@ export class TokenController {
   @Header('Access-Control-Allow-Origin','*')
   getTokens(@GetUser('id') userId: number) {
     console.log('getTokens');
-    this.tokenService.getTokens(userId);
-    console.log('completed getTokens');
+    return this.tokenService.getTokens(userId);
   }
 
 
