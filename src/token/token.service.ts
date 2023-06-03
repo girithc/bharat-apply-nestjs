@@ -31,6 +31,8 @@ export class TokenService {
     userId: number,
     dto: CreateTokenDto,
   ) {
+
+    console.log('dto: ',dto)
      
     const data = {
       "model": "ada",             
@@ -94,6 +96,7 @@ export class TokenService {
   }
 
   async getTokens(userId: number) {
+
     return this.prisma.token.findMany({
       where: {
         userId,
