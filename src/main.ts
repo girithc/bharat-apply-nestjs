@@ -13,8 +13,8 @@ async function bootstrap() {
     origin: ['https://bharat-apply.herokuapp.com', '/\.bharat-apply.herokuapp\.com$/', 'https://bharatapply-backend.herokuapp.com/token', '/\.bharat-apply-backend.herokuapp\.com/token$/','http://localhost:4200'],
     methods: ['GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS'],
     credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    exposedHeaders: ['Content-Range', 'X-Content-Range'],
+//    allowedHeaders: ['Content-Type', 'Authorization'],
+//    exposedHeaders: ['Content-Range', 'X-Content-Range'],
     optionsSuccessStatus: 210,
   });
   await app.listen((process.env.PORT || 3000));
