@@ -36,6 +36,18 @@ export class AuthService {
           hash,
         },
       });
+
+      const appProfile =
+        await this.prisma.applicationProfile.create(
+          {
+            data: {
+              userId: user.id,
+            },
+          },
+        );
+
+      console.log(appProfile);
+
       const tokens = await this.getTokens(
         user.id,
         user.email,
