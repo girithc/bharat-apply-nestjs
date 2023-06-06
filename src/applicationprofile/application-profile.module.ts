@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ApplicationController } from './application-profile.controller';
-import { ApplicationService } from './application-profile.service';
+import { ApplicationProfileController } from './application-profile.controller';
+import { ApplicationProfileService } from './application-profile.service';
 
 @Module({
-  controllers: [ApplicationController],
-  providers: [ApplicationService],
+  controllers: [ApplicationProfileController],
+  providers: [ApplicationProfileService],
 })
-export class ApplicationModule {}
+export class ApplicationProfileModule {}

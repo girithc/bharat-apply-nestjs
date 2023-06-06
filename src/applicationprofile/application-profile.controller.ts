@@ -12,22 +12,22 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtGuard } from '../auth/guard';
-import { ApplicationService } from './application-profile.service';
+import { ApplicationProfileService } from './application-profile.service';
 import { GetUser } from '../auth/decorator';
 import { ApplicationProfileDto } from './dto';
 
 @UseGuards(JwtGuard)
 @Controller('application-profile')
-export class ApplicationController {
+export class ApplicationProfileController {
   constructor(
-    private applicationService: ApplicationService,
+    private applicationProfileService: ApplicationProfileService,
   ) {}
   @Post()
   createApplicationProfile(
     @GetUser('id') userId: number,
     @Body() dto: ApplicationProfileDto,
   ) {
-    return this.applicationService.createApplication(
+    return this.applicationProfileService.createApplication(
       userId,
       dto,
     );
@@ -36,7 +36,7 @@ export class ApplicationController {
   getApplicationProfiles(
     @GetUser('id') userId: number,
   ) {
-    return this.applicationService.getApplicationProfiles(
+    return this.applicationProfileService.getApplicationProfiles(
       userId,
     );
   }
@@ -48,7 +48,7 @@ export class ApplicationController {
     applicationId: number,
     @Body() dto: ApplicationProfileDto,
   ) {
-    return this.applicationService.editApplicationProfileById(
+    return this.applicationProfileService.editApplicationProfileById(
       userId,
       applicationId,
       dto,
@@ -62,7 +62,7 @@ export class ApplicationController {
     @Param('id', ParseIntPipe)
     applicationId: number,
   ) {
-    return this.applicationService.deleteApplicationProfileById(
+    return this.applicationProfileService.deleteApplicationProfileById(
       userId,
       applicationId,
     );

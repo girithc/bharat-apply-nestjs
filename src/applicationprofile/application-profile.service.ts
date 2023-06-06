@@ -6,7 +6,7 @@ import { ApplicationProfileDto } from './dto';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
-export class ApplicationService {
+export class ApplicationProfileService {
   constructor(private prisma: PrismaService) {}
   async createApplication(
     userId: number,
