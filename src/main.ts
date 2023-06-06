@@ -10,13 +10,22 @@ async function bootstrap() {
     }),
   );
   app.enableCors({
-    origin: ['https://bharat-apply.herokuapp.com', '/\.bharat-apply.herokuapp\.com$/', 'https://bharatapply-backend.herokuapp.com/token', '/\.bharat-apply-backend.herokuapp\.com/token$/','http://localhost:4200', 'https://api.openai.com/v1/completions'],
-    methods: ['GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS'],
+    origin: [
+      'https://bharat-apply.herokuapp.com',
+      '/.bharat-apply.herokuapp.com$/',
+      'https://bharatapply-backend.herokuapp.com/token',
+      '/.bharat-apply-backend.herokuapp.com/token$/',
+      'http://localhost:4200',
+      'https://api.openai.com/v1/completions',
+    ],
+    methods: [
+      'GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS',
+    ],
     credentials: true,
-//    allowedHeaders: ['Content-Type', 'Authorization'],
-//    exposedHeaders: ['Content-Range', 'X-Content-Range'],
+    //    allowedHeaders: ['Content-Type', 'Authorization'],
+    //    exposedHeaders: ['Content-Range', 'X-Content-Range'],
     optionsSuccessStatus: 210,
   });
-  await app.listen((process.env.PORT || 3000));
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();

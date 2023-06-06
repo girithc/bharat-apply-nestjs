@@ -29,7 +29,7 @@ export class ApplicationProfileService {
     return this.prisma.applicationProfile.findMany(
       {
         where: {
-          userId,
+          userId: userId,
         },
       },
     );
