@@ -36,6 +36,10 @@ export class ApplicationProfileController {
   getApplicationProfiles(
     @GetUser('id') userId: number,
   ) {
+    console.log(
+      'getApplicationProfile Controller',
+      userId,
+    );
     return this.applicationProfileService.getApplicationProfiles(
       userId,
     );
