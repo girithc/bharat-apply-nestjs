@@ -42,6 +42,10 @@ export class AuthService {
           {
             data: {
               userId: user.id,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              idProof: '',
+              idProofLinks: '',
             },
           },
         );
