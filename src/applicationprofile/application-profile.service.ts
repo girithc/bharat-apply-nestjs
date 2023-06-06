@@ -26,6 +26,10 @@ export class ApplicationProfileService {
   }
 
   getApplicationProfiles(userId: number) {
+    console.log(
+      'getApplicationProfile: ',
+      userId,
+    );
     return this.prisma.applicationProfile.findMany(
       {
         where: {
