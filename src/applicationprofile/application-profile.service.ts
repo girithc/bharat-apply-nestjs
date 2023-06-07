@@ -63,7 +63,8 @@ export class ApplicationProfileService {
     }
 
     console.log('DTO: ', dto);
-
+    dto.dateOfBirth = dto.dateOfBirth as Date;
+    console.log('DTO: ', dto);
     return this.prisma.applicationProfile.update({
       where: {
         id: applicationProfileId,

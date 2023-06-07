@@ -17,9 +17,8 @@ export class ApplicationProfileDto {
   @IsOptional()
   lastName: string;
 
-  @IsDate()
   @IsOptional()
-  dateOfBirth: Date;
+  dateOfBirth: any;
 
   @IsString()
   @IsOptional()
