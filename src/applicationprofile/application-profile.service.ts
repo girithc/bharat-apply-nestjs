@@ -49,7 +49,6 @@ export class ApplicationProfileService {
       await this.prisma.applicationProfile.findUnique(
         {
           where: {
-            userId: userId,
             id: applicationProfileId,
           },
         },
