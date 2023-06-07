@@ -62,6 +62,8 @@ export class ApplicationProfileService {
       );
     }
 
+    console.log('DTO: ', dto);
+
     return this.prisma.applicationProfile.update({
       where: {
         id: applicationProfileId,
