@@ -44,6 +44,7 @@ export class ApplicationProfileService {
     applicationProfileId: number,
     dto: ApplicationProfileDto,
   ) {
+    console.log('SERVICE: EDIT APPLICATION');
     const applicationProfile =
       await this.prisma.applicationProfile.findUnique(
         {

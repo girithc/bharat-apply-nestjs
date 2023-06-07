@@ -52,6 +52,8 @@ export class ApplicationProfileController {
     applicationId: number,
     @Body() dto: ApplicationProfileDto,
   ) {
+    console.log('CONTROLLER: EDIT APPLICATION');
+
     return this.applicationProfileService.editApplicationProfileById(
       userId,
       applicationId,
