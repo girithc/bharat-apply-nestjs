@@ -37,7 +37,7 @@ model ApplicationProfile {
   title String?
   firstName String?
   lastName String?
-  dateOfBirth String?
+  dateOfBirth DateTime?
   gender String?
   bloodGroup String?
 
