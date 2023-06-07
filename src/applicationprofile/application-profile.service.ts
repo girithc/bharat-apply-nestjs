@@ -61,10 +61,6 @@ export class ApplicationProfileService {
         'Access to resource is denied',
       );
     }
-
-    console.log('DTO: ', dto);
-    dto.dateOfBirth =
-      dto.dateOfBirth.toISOString();
     console.log('DTO: ', dto);
     return this.prisma.applicationProfile.update({
       where: {
