@@ -37,7 +37,7 @@ model ApplicationProfile {
   title String?
   firstName String?
   lastName String?
-  dateOfBirth DateTime?
+  dateOfBirth String?
   gender String?
   bloodGroup String?
 
@@ -60,12 +60,12 @@ model ApplicationProfile {
   fathersTitle String?
   fathersFirstName String?
   fathersLastName String?
-  fathersDateOfBirth DateTime?
+  fathersDateOfBirth String?
 
   mothersTitle String?
   mothersFirstName String?
   mothersLastName String?
-  mothersDateOfBirth DateTime?
+  mothersDateOfBirth String?
 
   classGrade Grade?
 
