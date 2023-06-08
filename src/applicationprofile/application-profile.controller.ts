@@ -63,19 +63,19 @@ export class ApplicationProfileController {
     );
 
     let dto_outgoing: AppContactIdentityDto_Outgoing;
-    dto_outgoing.primaryPhone = parseInt(
+    dto_outgoing.primaryPhone = Number(
       dto.primaryPhone,
     );
-    dto_outgoing.secondaryPhone = parseInt(
+    dto_outgoing.secondaryPhone = Number(
       dto.secondaryPhone,
     );
     dto_outgoing.email = dto_outgoing.email;
     dto_outgoing.agreeToCommunicationsContact =
-      JSON.parse(
-        dto.agreeToCommunicationsContact,
-      );
+      Boolean(dto.agreeToCommunicationsContact);
     dto_outgoing.idProof = dto.idProof;
     dto_outgoing.idProofLinks = dto.idProofLinks;
+
+    console.log('Transform', dto);
 
     return this.applicationProfileService.editApplicationContactIdentityById(
       userId,
