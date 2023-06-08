@@ -65,7 +65,9 @@ export class ApplicationProfileController {
       'Primary Phone type: ',
       typeof dto.primaryPhone,
     );
-    let dto_outgoing: AppContactIdentityDto_Outgoing;
+    const dto_outgoing: AppContactIdentityDto_Outgoing =
+      new AppContactIdentityDto_Outgoing();
+
     dto_outgoing.primaryPhone = Number(
       dto.primaryPhone,
     );
