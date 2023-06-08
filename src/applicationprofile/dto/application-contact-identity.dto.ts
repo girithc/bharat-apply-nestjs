@@ -24,9 +24,9 @@ export class ApplicationContactIdentityDto {
 
   @IsString()
   @IsOptional()
-  idUploaded: string[];
+  idProofLinks: string[];
 
   @IsBoolean()
   @IsOptional()
-  agreeToCommunications: boolean;
+  agreeToCommunicationsContact: boolean;
 }

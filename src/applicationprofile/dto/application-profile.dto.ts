@@ -1,7 +1,6 @@
 import {
   IsString,
   IsOptional,
-  IsDate,
 } from 'class-validator';
 
 export class ApplicationProfileDto {
