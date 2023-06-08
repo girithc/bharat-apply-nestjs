@@ -15,7 +15,10 @@ import { JwtGuard } from '../auth/guard';
 import { ApplicationProfileService } from './application-profile.service';
 import { GetUser } from '../auth/decorator';
 import { ApplicationProfileDto } from './dto';
-import { ApplicationContactIdentityDto } from './dto/application-contact-identity.dto';
+import {
+  AppContactIdentityDto_Incoming,
+  AppContactIdentityDto_Outgoing,
+} from './dto/application-contact-identity.dto';
 
 @UseGuards(JwtGuard)
 @Controller('application-profile')
@@ -52,16 +55,31 @@ export class ApplicationProfileController {
     @GetUser('id') userId: number,
     @Param('id', ParseIntPipe)
     applicationProfileId: number,
-    @Body() dto: ApplicationContactIdentityDto,
+    @Body() dto: AppContactIdentityDto_Incoming,
   ) {
     console.log(
       'CONTROLLER: EDIT APPLICATION - Contact Identity',
     );
 
+    let dto_outgoing: AppContactIdentityDto_Outgoing;
+    dto_outgoing.primaryPhone = parseInt(
+      dto.primaryPhone,
+    );
+    dto_outgoing.secondaryPhone = parseInt(
+      dto.secondaryPhone,
+    );
+    dto_outgoing.email = dto_outgoing.email;
+    dto_outgoing.agreeToCommunicationsContact =
+      JSON.parse(
+        dto.agreeToCommunicationsContact,
+      );
+    dto_outgoing.idProof = dto.idProof;
+    dto_outgoing.idProofLinks = dto.idProofLinks;
+
     return this.applicationProfileService.editApplicationContactIdentityById(
       userId,
       applicationProfileId,
-      dto,
+      dto_outgoing,
     );
   }
 

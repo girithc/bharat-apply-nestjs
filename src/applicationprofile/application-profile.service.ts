@@ -4,7 +4,7 @@ import {
 } from '@nestjs/common';
 import { ApplicationProfileDto } from './dto';
 import { PrismaService } from '../prisma/prisma.service';
-import { ApplicationContactIdentityDto } from './dto/application-contact-identity.dto';
+import { AppContactIdentityDto_Outgoing } from './dto/application-contact-identity.dto';
 
 @Injectable()
 export class ApplicationProfileService {
@@ -79,7 +79,7 @@ export class ApplicationProfileService {
   async editApplicationContactIdentityById(
     userId: number,
     applicationProfileId: number,
-    dto: ApplicationContactIdentityDto,
+    dto: AppContactIdentityDto_Outgoing,
   ) {
     console.log(
       'SERVICE: EDIT APPLICATION - Contact Identity',
