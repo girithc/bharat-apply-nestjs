@@ -15,6 +15,7 @@ import { JwtGuard } from '../auth/guard';
 import { ApplicationProfileService } from './application-profile.service';
 import { GetUser } from '../auth/decorator';
 import { ApplicationProfileDto } from './dto';
+import { ApplicationContactIdentityDto } from './dto/application-contact-identity.dto';
 
 @UseGuards(JwtGuard)
 @Controller('application-profile')
@@ -22,6 +23,7 @@ export class ApplicationProfileController {
   constructor(
     private applicationProfileService: ApplicationProfileService,
   ) {}
+
   @Post()
   createApplicationProfile(
     @GetUser('id') userId: number,
@@ -42,6 +44,22 @@ export class ApplicationProfileController {
     );
     return this.applicationProfileService.getApplicationProfiles(
       userId,
+    );
+  }
+
+  @Patch('contact-identity/:id')
+  editApplicationContactIdentityById(
+    @GetUser('id') userId: number,
+    @Param('id', ParseIntPipe)
+    applicationProfileId: number,
+    @Body() dto: ApplicationContactIdentityDto,
+  ) {
+    console.log('CONTROLLER: EDIT APPLICATION');
+
+    return this.applicationProfileService.editApplicationContactIdentityById(
+      userId,
+      applicationProfileId,
+      dto,
     );
   }
 
