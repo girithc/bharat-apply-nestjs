@@ -54,7 +54,9 @@ export class ApplicationProfileController {
     applicationProfileId: number,
     @Body() dto: ApplicationContactIdentityDto,
   ) {
-    console.log('CONTROLLER: EDIT APPLICATION');
+    console.log(
+      'CONTROLLER: EDIT APPLICATION - Contact Identity',
+    );
 
     return this.applicationProfileService.editApplicationContactIdentityById(
       userId,
