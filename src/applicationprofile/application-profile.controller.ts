@@ -58,7 +58,8 @@ export class ApplicationProfileController {
     @Body() dto: AppContactIdentityDto_Incoming,
   ) {
     console.log(
-      'CONTROLLER: EDIT APPLICATION - Contact Identity',
+      'CONTROLLER: EDIT APPLICATION - Contact Identity : ',
+      dto,
     );
 
     let dto_outgoing: AppContactIdentityDto_Outgoing;
