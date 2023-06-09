@@ -19,6 +19,10 @@ import {
   AppContactIdentityDto_Incoming,
   AppContactIdentityDto_Outgoing,
 } from './dto/application-contact-identity.dto';
+import {
+  AppAddressDto_Incoming,
+  AppAddressDto_Outgoing,
+} from './dto/application-address.dto';
 
 @UseGuards(JwtGuard)
 @Controller('application-profile')
@@ -58,7 +62,7 @@ export class ApplicationProfileController {
     @Body() dto: AppContactIdentityDto_Incoming,
   ) {
     console.log(
-      'CONTROLLER: EDIT APPLICATION - Contact Identity : ',
+      'CONTROLLER: EDIT APPLICATION - Address : ',
       dto,
     );
     console.log(
@@ -85,6 +89,41 @@ export class ApplicationProfileController {
     console.log('Transform', dto_outgoing);
 
     return this.applicationProfileService.editApplicationContactIdentityById(
+      userId,
+      applicationProfileId,
+      dto_outgoing,
+    );
+  }
+
+  @Patch('address/:id')
+  editApplicationAddressById(
+    @GetUser('id') userId: number,
+    @Param('id', ParseIntPipe)
+    applicationProfileId: number,
+    @Body() dto: AppAddressDto_Incoming,
+  ) {
+    console.log(
+      'CONTROLLER: EDIT APPLICATION - Contact Identity : ',
+      dto,
+    );
+    const dto_outgoing: AppAddressDto_Outgoing =
+      new AppAddressDto_Outgoing();
+
+    dto_outgoing.addressLineOne =
+      dto.addressLineOne;
+
+    dto_outgoing.addressLineTwo =
+      dto.addressLineTwo;
+    dto_outgoing.state = dto.state;
+    dto_outgoing.city = dto.city;
+    dto_outgoing.country = dto.country;
+    dto_outgoing.pinCode = Number(dto.pinCode);
+    dto_outgoing.agreeToCommunicationsAddress =
+      Boolean(dto.agreeToCommunicationsAddress);
+
+    console.log('Transform', dto_outgoing);
+
+    return this.applicationProfileService.editApplicationAddressById(
       userId,
       applicationProfileId,
       dto_outgoing,

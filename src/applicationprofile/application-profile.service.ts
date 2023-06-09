@@ -5,6 +5,7 @@ import {
 import { ApplicationProfileDto } from './dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { AppContactIdentityDto_Outgoing } from './dto/application-contact-identity.dto';
+import { AppAddressDto_Outgoing } from './dto/application-address.dto';
 
 @Injectable()
 export class ApplicationProfileService {
@@ -95,6 +96,41 @@ export class ApplicationProfileService {
     if (
       !applicationContactIdentity ||
       applicationContactIdentity.userId !== userId
+    ) {
+      throw new ForbiddenException(
+        'Access to resource is denied',
+      );
+    }
+    console.log('DTO: ', dto);
+    return this.prisma.applicationProfile.update({
+      where: {
+        id: applicationProfileId,
+      },
+      data: {
+        ...dto,
+      },
+    });
+  }
+
+  async editApplicationAddressById(
+    userId: number,
+    applicationProfileId: number,
+    dto: AppAddressDto_Outgoing,
+  ) {
+    console.log(
+      'SERVICE: EDIT APPLICATION - Address',
+    );
+    const applicationAddress =
+      await this.prisma.applicationProfile.findUnique(
+        {
+          where: {
+            id: applicationProfileId,
+          },
+        },
+      );
+    if (
+      !applicationAddress ||
+      applicationAddress.userId !== userId
     ) {
       throw new ForbiddenException(
         'Access to resource is denied',
