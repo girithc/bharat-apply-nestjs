@@ -77,7 +77,9 @@ export class ApplicationProfileController {
     dto_outgoing.email = dto.email;
     dto_outgoing.agreeToCommunicationsContact =
       Boolean(dto.agreeToCommunicationsContact);
-    dto_outgoing.idProof = dto.idProof;
+    dto_outgoing.idProof = this.stringListProcess(
+      String(dto.idProof),
+    );
     dto_outgoing.idProofLinks = dto.idProofLinks;
 
     console.log('Transform', dto_outgoing);
@@ -116,5 +118,12 @@ export class ApplicationProfileController {
       userId,
       applicationId,
     );
+  }
+
+  stringListProcess(sentence: string): string[] {
+    const stringList: string[] =
+      sentence.split(',');
+    console.log('String List: ', stringList);
+    return stringList;
   }
 }
