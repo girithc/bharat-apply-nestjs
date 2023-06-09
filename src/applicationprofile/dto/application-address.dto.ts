@@ -20,7 +20,7 @@ export class AppAddressDto_Outgoing {
 
   @IsString()
   @IsOptional()
-  city: string[];
+  city: string;
 
   @IsString()
   @IsOptional()
@@ -50,7 +50,7 @@ export class AppAddressDto_Incoming {
 
   @IsString()
   @IsOptional()
-  city: string[];
+  city: string;
 
   @IsString()
   @IsOptional()
