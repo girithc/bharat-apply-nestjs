@@ -74,13 +74,13 @@ export class ApplicationProfileController {
     dto_outgoing.secondaryPhone = Number(
       dto.secondaryPhone,
     );
-    dto_outgoing.email = dto.email;
+    dto_outgoing.email = String(dto.email);
     dto_outgoing.agreeToCommunicationsContact =
       Boolean(dto.agreeToCommunicationsContact);
     dto_outgoing.idProof = dto.idProof;
     dto_outgoing.idProofLinks = dto.idProofLinks;
 
-    console.log('Transform', dto);
+    console.log('Transform', dto_outgoing);
 
     return this.applicationProfileService.editApplicationContactIdentityById(
       userId,
