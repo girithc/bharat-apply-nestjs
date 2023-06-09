@@ -14,7 +14,10 @@ import {
 import { JwtGuard } from '../auth/guard';
 import { ApplicationProfileService } from './application-profile.service';
 import { GetUser } from '../auth/decorator';
-import { ApplicationProfileDto } from './dto';
+import {
+  AppFamilyDto,
+  ApplicationProfileDto,
+} from './dto';
 import {
   AppContactIdentityDto_Incoming,
   AppContactIdentityDto_Outgoing,
@@ -103,7 +106,7 @@ export class ApplicationProfileController {
     @Body() dto: AppAddressDto_Incoming,
   ) {
     console.log(
-      'CONTROLLER: EDIT APPLICATION - Contact Identity : ',
+      'CONTROLLER: EDIT APPLICATION - Address : ',
       dto,
     );
     const dto_outgoing: AppAddressDto_Outgoing =
@@ -127,6 +130,27 @@ export class ApplicationProfileController {
       userId,
       applicationProfileId,
       dto_outgoing,
+    );
+  }
+
+  @Patch('family/:id')
+  editApplicationFamilyById(
+    @GetUser('id') userId: number,
+    @Param('id', ParseIntPipe)
+    applicationProfileId: number,
+    @Body() dto: AppFamilyDto,
+  ) {
+    console.log(
+      'CONTROLLER: EDIT APPLICATION - Family : ',
+      dto,
+    );
+
+    console.log('DTO Family: ', dto);
+
+    return this.applicationProfileService.editApplicationFamilyById(
+      userId,
+      applicationProfileId,
+      dto,
     );
   }
 
