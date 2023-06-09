@@ -123,6 +123,7 @@ export class ApplicationProfileController {
   stringListProcess(sentence: string): string[] {
     const stringList: string[] =
       sentence.split(',');
+    stringList.pop();
     console.log('String List: ', stringList);
     return stringList;
   }
