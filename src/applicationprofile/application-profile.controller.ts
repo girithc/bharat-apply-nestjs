@@ -26,6 +26,7 @@ import {
   AppAddressDto_Incoming,
   AppAddressDto_Outgoing,
 } from './dto/application-address.dto';
+import { ApplicationGradeTenDto_out } from './dto/application-grade.dto';
 
 @UseGuards(JwtGuard)
 @Controller('application-profile')
@@ -44,6 +45,16 @@ export class ApplicationProfileController {
       dto,
     );
   }
+  @Post()
+  createApplicationGrade(
+    @GetUser('id') userId: number,
+    @Body() dto: ApplicationGradeTenDto_out
+  ) {
+    return this.applicationProfileService.createApplicationGrade(
+      userId, 
+      dto);
+  }
+
   @Get()
   getApplicationProfiles(
     @GetUser('id') userId: number,

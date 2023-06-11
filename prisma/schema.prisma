@@ -27,6 +27,7 @@ model User {
   applications Application[]
   tokens Token[]
   applicationProfile ApplicationProfile?
+  classGrade Grade?
 
   @@map("users")
 }
@@ -67,8 +68,6 @@ model ApplicationProfile {
   mothersLastName String?
   mothersDateOfBirth String?
 
-  classGrade Grade?
-
   userId Int @unique
   user   User @relation(fields: [userId], references: [id])
 
@@ -80,8 +79,40 @@ model Grade {
   createAt  DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  studentId Int @unique
-  student   ApplicationProfile @relation(fields: [studentId], references: [id])
+  classTenBoard String?
+  classTenExaminationState String?
+  classTenExaminationCity String?
+  classTenSchoolName String?
+  classTenEnrollmentNo Int?
+  classTenPassingMonth String?
+  classTenPassingYear Int?
+  classTenGradeType String?
+  classTenMarks Float?
+  classTenTotalMarks Float?
+  classTenPercentage Float?
+  classTenInfoAccurate Boolean? @default(false)
+
+  classTwelveType String?
+  classTwelveStatus String?
+  classTwelveBoard String?
+  classTwelveExaminationState String?
+  classTwelveExaminationCity String?
+  classTwelveStream String?
+  classTwelveSchoolName String?
+  classTwelveSpecialization String?
+
+  classTwelveEnrollmentNo Int?
+  classTwelvePassingMonth String?
+  classTwelvePassingYear String?
+  classTwelveGradeType String?
+  classTwelveMarks Float?
+  classTwelveTotalMarks Float?
+  classTwelvePercentage Float?
+  classTwelveInfoAccurate Boolean? @default(false)
+
+
+  userId Int @unique
+  user   User @relation(fields: [userId], references: [id])
 
   @@map("grades")
 }

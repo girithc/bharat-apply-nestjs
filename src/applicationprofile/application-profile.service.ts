@@ -9,6 +9,7 @@ import {
 import { PrismaService } from '../prisma/prisma.service';
 import { AppContactIdentityDto_Outgoing } from './dto/application-contact-identity.dto';
 import { AppAddressDto_Outgoing } from './dto/application-address.dto';
+import { ApplicationGradeTenDto_out } from './dto/application-grade.dto';
 
 @Injectable()
 export class ApplicationProfileService {
@@ -29,6 +30,15 @@ export class ApplicationProfileService {
       );
 
     return application;
+  }
+
+  async createApplicationGrade(userId: number, dto: ApplicationGradeTenDto_out) {
+    const appGrade = await this.prisma.grade.create({
+      data: {
+        userId,
+        ...dto
+      }
+    })
   }
 
   getApplicationProfiles(userId: number) {
