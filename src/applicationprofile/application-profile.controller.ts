@@ -26,7 +26,7 @@ import {
   AppAddressDto_Incoming,
   AppAddressDto_Outgoing,
 } from './dto/application-address.dto';
-import { ApplicationGradeTenDto_out } from './dto/application-grade.dto';
+import { ApplicationGradeTenDto_in, ApplicationGradeTenDto_out } from './dto/application-grade.dto';
 
 @UseGuards(JwtGuard)
 @Controller('application-profile')
@@ -66,6 +66,44 @@ export class ApplicationProfileController {
     return this.applicationProfileService.getApplicationProfiles(
       userId,
     );
+  }
+
+  @Get('grade')
+  getApplicationGrades(
+    @GetUser('id') userId: number)
+    {
+      return this.applicationProfileService.getApplicationGradeTen(
+        userId
+      );
+  }
+
+  @Patch('grade-10/:id')
+  editApplicationGradeTenById(
+    @GetUser('id') userId: number,
+    @Param('id', ParseIntPipe)
+    appGradeId: number,
+    @Body() dto: ApplicationGradeTenDto_in
+  ) {
+    const dto_outgoing: ApplicationGradeTenDto_out = new ApplicationGradeTenDto_out()
+    dto_outgoing.classTenEnrollmentNo = Number(dto.classTenEnrollmentNo);
+    dto_outgoing.classTenInfoAccurate = Boolean(dto.classTenInfoAccurate);
+    dto_outgoing.classTenMarks = Number(dto.classTenMarks);
+    dto_outgoing.classTenTotalMarks = Number(dto.classTenTotalMarks);
+    dto_outgoing.classTenPassingYear = Number(dto.classTenPassingYear);
+    dto_outgoing.classTenPercentage = Number(dto.classTenPercentage);
+
+    dto_outgoing.classTenBoard = dto.classTenBoard;
+    dto_outgoing.classTenExaminationCity = dto.classTenExaminationCity;
+    dto_outgoing.classTenExaminationState = dto.classTenExaminationState;
+    dto_outgoing.classTenGradeType = dto.classTenGradeType;
+    dto_outgoing.classTenPassingMonth = dto.classTenPassingMonth;
+    dto_outgoing.classTenSchoolName = dto.classTenSchoolName;
+
+    return this.applicationProfileService.editApplicationGradeTen(
+      userId,
+      appGradeId,
+      dto_outgoing
+    )
   }
 
   @Patch('contact-identity/:id')
@@ -180,6 +218,8 @@ export class ApplicationProfileController {
       dto,
     );
   }
+
+  @Patch('')
 
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')

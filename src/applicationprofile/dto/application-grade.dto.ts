@@ -50,8 +50,6 @@ export class ApplicationGradeTenDto_out {
     @IsBoolean()
     @IsOptional()
     classTenInfoAccurate: boolean;
-
-
 }
 
 export class ApplicationGradeTenDto_in {
@@ -103,6 +101,140 @@ export class ApplicationGradeTenDto_in {
     @IsString()
     @IsOptional()
     classTenInfoAccurate: string;
+}
 
 
+export class ApplicationGradeTwelveDto_out {
+    
+    @IsString()
+    @IsOptional()
+    classTwelveType: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveBoard: string;
+    
+    @IsString()
+    @IsOptional()
+    classTwelveStream: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveStatus: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveExaminationState: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveExaminationCity: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveSchoolName: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveSpecialization: string;
+
+    @IsNumber()
+    @IsOptional()
+    classTwelveEnrollmentNo: number;
+
+    @IsString()
+    @IsOptional()
+    classTwelvePassingMonth: string;
+
+    @IsNumber()
+    @IsOptional()
+    classTwelvePassingYear: number;
+
+    @IsString()
+    @IsOptional()
+    classTwelveGradeType: string;
+
+    @IsNumber()
+    @IsOptional()
+    classTwelveMarks: number;
+
+    @IsNumber()
+    @IsOptional()
+    classTwelveTotalMarks: number;
+
+    @IsNumber()
+    @IsOptional()
+    classTwelvePercentage: number;
+
+    @IsBoolean()
+    @IsOptional()
+    classTwelveInfoAccurate: boolean;
+}
+
+export class ApplicationGradeTwelveDto_in {
+    
+    
+    @IsString()
+    @IsOptional()
+    classTwelveType: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveBoard: string;
+    
+    @IsString()
+    @IsOptional()
+    classTwelveStream: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveStatus: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveExaminationState: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveExaminationCity: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveSchoolName: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveSpecialization: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveEnrollmentNo: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelvePassingMonth: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelvePassingYear: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveGradeType: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveMarks: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveTotalMarks: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelvePercentage: string;
+
+    @IsString()
+    @IsOptional()
+    classTwelveInfoAccurate: string;
 }

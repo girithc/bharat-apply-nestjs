@@ -97,13 +97,13 @@ model Grade {
   classTwelveBoard String?
   classTwelveExaminationState String?
   classTwelveExaminationCity String?
-  classTwelveStream String?
+  classTwelveStream String? 
   classTwelveSchoolName String?
   classTwelveSpecialization String?
 
   classTwelveEnrollmentNo Int?
   classTwelvePassingMonth String?
-  classTwelvePassingYear String?
+  classTwelvePassingYear Int?
   classTwelveGradeType String?
   classTwelveMarks Float?
   classTwelveTotalMarks Float?
