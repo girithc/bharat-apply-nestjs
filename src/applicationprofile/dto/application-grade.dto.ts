@@ -1,240 +1,238 @@
-import { IsBoolean, IsNumber, IsOptional, IsString } from "class-validator";
-
+import {
+  IsBoolean,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class ApplicationGradeTenDto_out {
-    
-    @IsString()
-    @IsOptional()
-    classTenBoard: string;
+  @IsString()
+  @IsOptional()
+  classTenBoard: string;
 
-    @IsString()
-    @IsOptional()
-    classTenExaminationState: string;
+  @IsString()
+  @IsOptional()
+  classTenExaminationState: string;
 
-    @IsString()
-    @IsOptional()
-    classTenExaminationCity: string;
+  @IsString()
+  @IsOptional()
+  classTenExaminationCity: string;
 
-    @IsString()
-    @IsOptional()
-    classTenSchoolName: string;
+  @IsString()
+  @IsOptional()
+  classTenSchoolName: string;
 
-    @IsNumber()
-    @IsOptional()
-    classTenEnrollmentNo: number;
+  @IsNumber()
+  @IsOptional()
+  classTenEnrollmentNo: number;
 
-    @IsString()
-    @IsOptional()
-    classTenPassingMonth: string;
+  @IsString()
+  @IsOptional()
+  classTenPassingMonth: string;
 
-    @IsNumber()
-    @IsOptional()
-    classTenPassingYear: number;
+  @IsNumber()
+  @IsOptional()
+  classTenPassingYear: number;
 
-    @IsString()
-    @IsOptional()
-    classTenGradeType: string;
+  @IsString()
+  @IsOptional()
+  classTenGradeType: string;
 
-    @IsNumber()
-    @IsOptional()
-    classTenMarks: number;
+  @IsNumber()
+  @IsOptional()
+  classTenMarks: number;
 
-    @IsNumber()
-    @IsOptional()
-    classTenTotalMarks: number;
+  @IsNumber()
+  @IsOptional()
+  classTenTotalMarks: number;
 
-    @IsNumber()
-    @IsOptional()
-    classTenPercentage: number;
+  @IsNumber()
+  @IsOptional()
+  classTenPercentage: number;
 
-    @IsBoolean()
-    @IsOptional()
-    classTenInfoAccurate: boolean;
+  @IsBoolean()
+  @IsOptional()
+  classTenInfoAccurate: boolean;
 }
 
 export class ApplicationGradeTenDto_in {
-    
-    @IsString()
-    @IsOptional()
-    classTenBoard: string;
+  @IsString()
+  @IsOptional()
+  classTenBoard: string;
 
-    @IsString()
-    @IsOptional()
-    classTenExaminationState: string;
+  @IsString()
+  @IsOptional()
+  classTenExaminationState: string;
 
-    @IsString()
-    @IsOptional()
-    classTenExaminationCity: string;
+  @IsString()
+  @IsOptional()
+  classTenExaminationCity: string;
 
-    @IsString()
-    @IsOptional()
-    classTenSchoolName: string;
+  @IsString()
+  @IsOptional()
+  classTenSchoolName: string;
 
-    @IsString()
-    @IsOptional()
-    classTenEnrollmentNo: string;
+  @IsString()
+  @IsOptional()
+  classTenEnrollmentNo: string;
 
-    @IsString()
-    @IsOptional()
-    classTenPassingMonth: string;
+  @IsString()
+  @IsOptional()
+  classTenPassingMonth: string;
 
-    @IsString()
-    @IsOptional()
-    classTenPassingYear: string;
+  @IsString()
+  @IsOptional()
+  classTenPassingYear: string;
 
-    @IsString()
-    @IsOptional()
-    classTenGradeType: string;
+  @IsString()
+  @IsOptional()
+  classTenGradeType: string;
 
-    @IsString()
-    @IsOptional()
-    classTenMarks: string;
+  @IsString()
+  @IsOptional()
+  classTenMarks: string;
 
-    @IsString()
-    @IsOptional()
-    classTenTotalMarks: string;
+  @IsString()
+  @IsOptional()
+  classTenTotalMarks: string;
 
-    @IsString()
-    @IsOptional()
-    classTenPercentage: string;
+  @IsString()
+  @IsOptional()
+  classTenPercentage: string;
 
-    @IsString()
-    @IsOptional()
-    classTenInfoAccurate: string;
+  @IsString()
+  @IsOptional()
+  classTenInfoAccurate: string;
 }
 
-
 export class ApplicationGradeTwelveDto_out {
-    
-    @IsString()
-    @IsOptional()
-    classTwelveType: string;
+  @IsString()
+  @IsOptional()
+  classTwelveType: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveBoard: string;
-    
-    @IsString()
-    @IsOptional()
-    classTwelveStream: string;
+  @IsString()
+  @IsOptional()
+  classTwelveBoard: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveStatus: string;
+  @IsString()
+  @IsOptional()
+  classTwelveStream: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveExaminationState: string;
+  @IsString()
+  @IsOptional()
+  classTwelveStatus: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveExaminationCity: string;
+  @IsString()
+  @IsOptional()
+  classTwelveExaminationState: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveSchoolName: string;
+  @IsString()
+  @IsOptional()
+  classTwelveExaminationCity: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveSpecialization: string;
+  @IsString()
+  @IsOptional()
+  classTwelveSchoolName: string;
 
-    @IsNumber()
-    @IsOptional()
-    classTwelveEnrollmentNo: number;
+  @IsString()
+  @IsOptional()
+  classTwelveSpecialization: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelvePassingMonth: string;
+  @IsNumber()
+  @IsOptional()
+  classTwelveEnrollmentNo: number;
 
-    @IsNumber()
-    @IsOptional()
-    classTwelvePassingYear: number;
+  @IsString()
+  @IsOptional()
+  classTwelvePassingMonth: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveGradeType: string;
+  @IsNumber()
+  @IsOptional()
+  classTwelvePassingYear: number;
 
-    @IsNumber()
-    @IsOptional()
-    classTwelveMarks: number;
+  @IsString()
+  @IsOptional()
+  classTwelveGradeType: string;
 
-    @IsNumber()
-    @IsOptional()
-    classTwelveTotalMarks: number;
+  @IsNumber()
+  @IsOptional()
+  classTwelveMarks: number;
 
-    @IsNumber()
-    @IsOptional()
-    classTwelvePercentage: number;
+  @IsNumber()
+  @IsOptional()
+  classTwelveTotalMarks: number;
 
-    @IsBoolean()
-    @IsOptional()
-    classTwelveInfoAccurate: boolean;
+  @IsNumber()
+  @IsOptional()
+  classTwelvePercentage: number;
+
+  @IsBoolean()
+  @IsOptional()
+  classTwelveInfoAccurate: boolean;
 }
 
 export class ApplicationGradeTwelveDto_in {
-    
-    
-    @IsString()
-    @IsOptional()
-    classTwelveType: string;
+  @IsString()
+  @IsOptional()
+  classTwelveType: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveBoard: string;
-    
-    @IsString()
-    @IsOptional()
-    classTwelveStream: string;
+  @IsString()
+  @IsOptional()
+  classTwelveBoard: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveStatus: string;
+  @IsString()
+  @IsOptional()
+  classTwelveStream: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveExaminationState: string;
+  @IsString()
+  @IsOptional()
+  classTwelveStatus: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveExaminationCity: string;
+  @IsString()
+  @IsOptional()
+  classTwelveExaminationState: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveSchoolName: string;
+  @IsString()
+  @IsOptional()
+  classTwelveExaminationCity: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveSpecialization: string;
+  @IsString()
+  @IsOptional()
+  classTwelveSchoolName: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveEnrollmentNo: string;
+  @IsString()
+  @IsOptional()
+  classTwelveSpecialization: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelvePassingMonth: string;
+  @IsString()
+  @IsOptional()
+  classTwelveEnrollmentNo: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelvePassingYear: string;
+  @IsString()
+  @IsOptional()
+  classTwelvePassingMonth: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveGradeType: string;
+  @IsString()
+  @IsOptional()
+  classTwelvePassingYear: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveMarks: string;
+  @IsString()
+  @IsOptional()
+  classTwelveGradeType: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveTotalMarks: string;
+  @IsString()
+  @IsOptional()
+  classTwelveMarks: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelvePercentage: string;
+  @IsString()
+  @IsOptional()
+  classTwelveTotalMarks: string;
 
-    @IsString()
-    @IsOptional()
-    classTwelveInfoAccurate: string;
+  @IsString()
+  @IsOptional()
+  classTwelvePercentage: string;
+
+  @IsString()
+  @IsOptional()
+  classTwelveInfoAccurate: string;
 }

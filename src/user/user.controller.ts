@@ -1,7 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Patch,
   UseGuards,
 } from '@nestjs/common';
@@ -26,5 +29,11 @@ export class UserController {
     @Body() dto: EditUserDto,
   ) {
     return this.userService.editUser(userId, dto);
+  }
+
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @Delete()
+  deleteUser(@GetUser('id') userId: number) {
+    return this.userService.deleteUser(userId);
   }
 }

@@ -26,7 +26,12 @@ import {
   AppAddressDto_Incoming,
   AppAddressDto_Outgoing,
 } from './dto/application-address.dto';
-import { ApplicationGradeTenDto_in, ApplicationGradeTenDto_out } from './dto/application-grade.dto';
+import {
+  ApplicationGradeTenDto_in,
+  ApplicationGradeTenDto_out,
+  ApplicationGradeTwelveDto_in,
+  ApplicationGradeTwelveDto_out,
+} from './dto/application-grade.dto';
 
 @UseGuards(JwtGuard)
 @Controller('application-profile')
@@ -48,11 +53,12 @@ export class ApplicationProfileController {
   @Post()
   createApplicationGrade(
     @GetUser('id') userId: number,
-    @Body() dto: ApplicationGradeTenDto_out
+    @Body() dto: ApplicationGradeTenDto_out,
   ) {
     return this.applicationProfileService.createApplicationGrade(
-      userId, 
-      dto);
+      userId,
+      dto,
+    );
   }
 
   @Get()
@@ -70,11 +76,11 @@ export class ApplicationProfileController {
 
   @Get('grade')
   getApplicationGrades(
-    @GetUser('id') userId: number)
-    {
-      return this.applicationProfileService.getApplicationGradeTen(
-        userId
-      );
+    @GetUser('id') userId: number,
+  ) {
+    return this.applicationProfileService.getApplicationGradeTen(
+      userId,
+    );
   }
 
   @Patch('grade-10/:id')
@@ -82,28 +88,101 @@ export class ApplicationProfileController {
     @GetUser('id') userId: number,
     @Param('id', ParseIntPipe)
     appGradeId: number,
-    @Body() dto: ApplicationGradeTenDto_in
+    @Body() dto: ApplicationGradeTenDto_in,
   ) {
-    const dto_outgoing: ApplicationGradeTenDto_out = new ApplicationGradeTenDto_out()
-    dto_outgoing.classTenEnrollmentNo = Number(dto.classTenEnrollmentNo);
-    dto_outgoing.classTenInfoAccurate = Boolean(dto.classTenInfoAccurate);
-    dto_outgoing.classTenMarks = Number(dto.classTenMarks);
-    dto_outgoing.classTenTotalMarks = Number(dto.classTenTotalMarks);
-    dto_outgoing.classTenPassingYear = Number(dto.classTenPassingYear);
-    dto_outgoing.classTenPercentage = Number(dto.classTenPercentage);
+    const dto_outgoing: ApplicationGradeTenDto_out =
+      new ApplicationGradeTenDto_out();
+    dto_outgoing.classTenEnrollmentNo = Number(
+      dto.classTenEnrollmentNo,
+    );
+    dto_outgoing.classTenInfoAccurate = Boolean(
+      dto.classTenInfoAccurate,
+    );
+    dto_outgoing.classTenMarks = Number(
+      dto.classTenMarks,
+    );
+    dto_outgoing.classTenTotalMarks = Number(
+      dto.classTenTotalMarks,
+    );
+    dto_outgoing.classTenPassingYear = Number(
+      dto.classTenPassingYear,
+    );
+    dto_outgoing.classTenPercentage = Number(
+      dto.classTenPercentage,
+    );
 
-    dto_outgoing.classTenBoard = dto.classTenBoard;
-    dto_outgoing.classTenExaminationCity = dto.classTenExaminationCity;
-    dto_outgoing.classTenExaminationState = dto.classTenExaminationState;
-    dto_outgoing.classTenGradeType = dto.classTenGradeType;
-    dto_outgoing.classTenPassingMonth = dto.classTenPassingMonth;
-    dto_outgoing.classTenSchoolName = dto.classTenSchoolName;
+    dto_outgoing.classTenBoard =
+      dto.classTenBoard;
+    dto_outgoing.classTenExaminationCity =
+      dto.classTenExaminationCity;
+    dto_outgoing.classTenExaminationState =
+      dto.classTenExaminationState;
+    dto_outgoing.classTenGradeType =
+      dto.classTenGradeType;
+    dto_outgoing.classTenPassingMonth =
+      dto.classTenPassingMonth;
+    dto_outgoing.classTenSchoolName =
+      dto.classTenSchoolName;
 
     return this.applicationProfileService.editApplicationGradeTen(
       userId,
       appGradeId,
-      dto_outgoing
-    )
+      dto_outgoing,
+    );
+  }
+
+  @Patch('grade-12/:id')
+  editApplicationGradeTwelveById(
+    @GetUser('id') userId: number,
+    @Param('id', ParseIntPipe)
+    appGradeId: number,
+    @Body() dto: ApplicationGradeTwelveDto_in,
+  ) {
+    const dto_outgoing: ApplicationGradeTwelveDto_out =
+      new ApplicationGradeTwelveDto_out();
+    dto_outgoing.classTwelveEnrollmentNo = Number(
+      dto.classTwelveEnrollmentNo,
+    );
+    dto_outgoing.classTwelveInfoAccurate =
+      Boolean(dto.classTwelveInfoAccurate);
+    dto_outgoing.classTwelveMarks = Number(
+      dto.classTwelveMarks,
+    );
+    dto_outgoing.classTwelveTotalMarks = Number(
+      dto.classTwelveTotalMarks,
+    );
+    dto_outgoing.classTwelvePassingYear = Number(
+      dto.classTwelvePassingYear,
+    );
+    dto_outgoing.classTwelvePercentage = Number(
+      dto.classTwelvePercentage,
+    );
+    dto_outgoing.classTwelveBoard =
+      dto.classTwelveBoard;
+    dto_outgoing.classTwelveExaminationCity =
+      dto.classTwelveExaminationCity;
+    dto_outgoing.classTwelveExaminationState =
+      dto.classTwelveExaminationState;
+    dto_outgoing.classTwelveGradeType =
+      dto.classTwelveGradeType;
+    dto_outgoing.classTwelvePassingMonth =
+      dto.classTwelvePassingMonth;
+    dto_outgoing.classTwelveSchoolName =
+      dto.classTwelveSchoolName;
+    dto_outgoing.classTwelveSpecialization =
+      dto.classTwelveSpecialization;
+    dto_outgoing.classTwelveStatus =
+      dto.classTwelveStatus;
+    dto_outgoing.classTwelveStream =
+      dto.classTwelveStream;
+    dto_outgoing.classTwelveType =
+      dto.classTwelveType;
+
+    return this.applicationProfileService.editApplicationGradeTwelve(
+      userId,
+      appGradeId,
+      dto_outgoing,
+    );
   }
 
   @Patch('contact-identity/:id')
@@ -218,8 +297,6 @@ export class ApplicationProfileController {
       dto,
     );
   }
-
-  @Patch('')
 
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')

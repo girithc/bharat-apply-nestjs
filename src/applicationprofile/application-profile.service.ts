@@ -9,12 +9,14 @@ import {
 import { PrismaService } from '../prisma/prisma.service';
 import { AppContactIdentityDto_Outgoing } from './dto/application-contact-identity.dto';
 import { AppAddressDto_Outgoing } from './dto/application-address.dto';
-import { ApplicationGradeTenDto_out, ApplicationGradeTwelveDto_out } from './dto/application-grade.dto';
+import {
+  ApplicationGradeTenDto_out,
+  ApplicationGradeTwelveDto_out,
+} from './dto/application-grade.dto';
 
 @Injectable()
 export class ApplicationProfileService {
   constructor(private prisma: PrismaService) {}
-
 
   /////////
   // Create
@@ -37,13 +39,19 @@ export class ApplicationProfileService {
     return application;
   }
 
-  async createApplicationGrade(userId: number, dto: ApplicationGradeTenDto_out) {
-    const appGrade = await this.prisma.grade.create({
-      data: {
-        userId,
-        ...dto
-      }
-    })
+  async createApplicationGrade(
+    userId: number,
+    dto: ApplicationGradeTenDto_out,
+  ) {
+    const appGrade =
+      await this.prisma.grade.create({
+        data: {
+          userId,
+          ...dto,
+        },
+      });
+
+    return appGrade;
   }
 
   /////////
@@ -65,23 +73,19 @@ export class ApplicationProfileService {
   }
 
   getApplicationGradeTen(userId: number) {
-    return this.prisma.grade.findUnique(
-      {
-        where: {
-          userId: userId
-        }
-      }
-    )
+    return this.prisma.grade.findUnique({
+      where: {
+        userId: userId,
+      },
+    });
   }
 
   getApplicationGradeTwelve(userId: number) {
-    return this.prisma.grade.findUnique(
-      {
-        where: {
-          userId: userId
-        }
-      }
-    )
+    return this.prisma.grade.findUnique({
+      where: {
+        userId: userId,
+      },
+    });
   }
 
   /////////
@@ -228,27 +232,24 @@ export class ApplicationProfileService {
     });
   }
 
-
   async editApplicationGradeTen(
     userId: number,
     appGradeId: number,
-    dto: ApplicationGradeTenDto_out
+    dto: ApplicationGradeTenDto_out,
   ) {
     console.log(
       'SERVICE: EDIT APPLICATION - Grade',
     );
 
-    const appGrade = await this.prisma.grade.findUnique({
-      where: {
-        userId: userId,
-        id: appGradeId
-      }
-    });
+    const appGrade =
+      await this.prisma.grade.findUnique({
+        where: {
+          userId: userId,
+          id: appGradeId,
+        },
+      });
 
-    if (
-      !appGrade ||
-      appGrade.userId !== userId
-    ) {
+    if (!appGrade || appGrade.userId !== userId) {
       throw new ForbiddenException(
         'Access to resource is denied',
       );
@@ -264,25 +265,24 @@ export class ApplicationProfileService {
     });
   }
 
-
   async editApplicationGradeTwelve(
     userId: number,
-    dto: ApplicationGradeTwelveDto_out
+    appGradeId: number,
+    dto: ApplicationGradeTwelveDto_out,
   ) {
     console.log(
       'SERVICE: EDIT APPLICATION - Grade',
     );
 
-    const appGrade = await this.prisma.grade.findUnique({
-      where: {
-        userId: userId
-      }
-    });
+    const appGrade =
+      await this.prisma.grade.findUnique({
+        where: {
+          userId: userId,
+          id: appGradeId,
+        },
+      });
 
-    if (
-      !appGrade ||
-      appGrade.userId !== userId
-    ) {
+    if (!appGrade || appGrade.userId !== userId) {
       throw new ForbiddenException(
         'Access to resource is denied',
       );
@@ -293,7 +293,7 @@ export class ApplicationProfileService {
         userId: userId,
       },
       data: {
-        ...dto
+        ...dto,
       },
     });
   }
