@@ -50,7 +50,14 @@ export class AuthService {
           },
         );
 
-      console.log(appProfile);
+      const appGrade =
+        await this.prisma.grade.create({
+          data: {
+            userId: user.id,
+          },
+        });
+
+      console.log(appProfile, appGrade);
 
       const tokens = await this.getTokens(
         user.id,
