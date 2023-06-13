@@ -239,6 +239,7 @@ export class ApplicationProfileService {
   ) {
     console.log(
       'SERVICE: EDIT APPLICATION - Grade',
+      dto,
     );
 
     const appGrade =

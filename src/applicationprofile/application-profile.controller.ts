@@ -92,6 +92,12 @@ export class ApplicationProfileController {
   ) {
     const dto_outgoing: ApplicationGradeTenDto_out =
       new ApplicationGradeTenDto_out();
+
+    console.log(
+      'TenInfoAccurate ',
+      dto.classTenInfoAccurate,
+      Boolean(dto.classTenInfoAccurate),
+    );
     dto_outgoing.classTenEnrollmentNo = Number(
       dto.classTenEnrollmentNo,
     );
