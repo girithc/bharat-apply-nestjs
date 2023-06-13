@@ -244,7 +244,6 @@ export class ApplicationProfileService {
     const appGrade =
       await this.prisma.grade.findUnique({
         where: {
-          userId: userId,
           id: appGradeId,
         },
       });
