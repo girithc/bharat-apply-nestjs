@@ -273,7 +273,12 @@ export class ApplicationProfileService {
     console.log(
       'SERVICE: EDIT APPLICATION - Grade',
     );
-
+    console.log(
+      'Service - 12 Status: ',
+      dto.classTwelveStatus,
+      ' 12 Stream: ',
+      dto.classTwelveStream,
+    );
     const appGrade =
       await this.prisma.grade.findUnique({
         where: {
