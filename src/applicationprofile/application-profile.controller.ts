@@ -181,6 +181,12 @@ export class ApplicationProfileController {
     dto_outgoing.classTwelveType =
       dto.classTwelveType;
 
+    console.log(
+      'Controller - 12 Status: ',
+      dto_outgoing.classTwelveStatus,
+      ' 12 Stream: ',
+      dto_outgoing.classTwelveStream,
+    );
     return this.applicationProfileService.editApplicationGradeTwelve(
       userId,
       appGradeId,
