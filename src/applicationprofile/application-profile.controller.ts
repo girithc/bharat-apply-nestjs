@@ -181,9 +181,10 @@ export class ApplicationProfileController {
     dto_outgoing.classTwelveType =
       dto.classTwelveType;
 
+    console.log('Dto ', dto);
     console.log(
       'Controller - 12 Status: ',
-      dto_outgoing.classTwelveStatus,
+      dto_outgoing.classTwelveStatus.toString(),
       ' 12 Stream: ',
       dto_outgoing.classTwelveStream,
     );
