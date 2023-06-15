@@ -101,7 +101,7 @@ model Grade {
   classTwelveSchoolName String?
   classTwelveSpecialization String?
 
-  classTwelveEnrollmentNo Int?
+  classTwelveEnrollmentNo Int? @default(0)
   classTwelvePassingMonth String?
   classTwelvePassingYear Int?
   classTwelveGradeType String?
