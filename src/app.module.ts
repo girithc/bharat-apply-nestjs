@@ -6,6 +6,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { TokenModule } from './token/token.module';
 import { ApplicationProfileModule } from './applicationprofile/application-profile.module';
+import { EmailModule } from './email/email.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ApplicationProfileModule } from './applicationprofile/application-profi
     ApplicationModule,
     PrismaModule,
     TokenModule,
+    EmailModule,
     ApplicationProfileModule,
   ],
   controllers: [],
