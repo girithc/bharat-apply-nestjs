@@ -17,8 +17,6 @@ async function bootstrap() {
       '/.bharat-apply-backend.herokuapp.com/token$/',
       'http://localhost:4200',
       'https://api.openai.com/v1/completions',
-      'https://api.sendgrid.com/v3/mail/send',
-      'https://api.sendgrid.com/v3/mail/send$/',
     ],
     methods: [
       'GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS',
