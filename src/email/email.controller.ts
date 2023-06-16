@@ -15,10 +15,11 @@ export class EmailController {
 
   @Post()
   sendEmail(@GetUser('id') userId: number) {
+    console.log('sendEmail()');
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(
-      process.env.SENDGRID_API_KEY,
+      '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',
     );
     const msg = {
       to: 'test@example.com', // Change to your recipient
