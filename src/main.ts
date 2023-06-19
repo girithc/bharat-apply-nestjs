@@ -11,8 +11,8 @@ async function bootstrap() {
   );
   app.enableCors({
     origin: [
-      'https://entri.herokuapp.com',
-      '/.entri.herokuapp.com$/',
+      'https://entri-b56075a4324b.herokuapp.com',
+      '/.entri-b56075a4324b.herokuapp.com$/',
       'https://bharatapply-backend.herokuapp.com/token',
       '/.bharat-apply-backend.herokuapp.com/token$/',
       'http://localhost:4200',
