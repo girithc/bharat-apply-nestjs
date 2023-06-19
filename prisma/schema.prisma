@@ -71,6 +71,8 @@ model ApplicationProfile {
   userId Int @unique
   user   User @relation(fields: [userId], references: [id])
 
+  college String[] @default([""])
+
   @@map("applicationprofiles")
 }
 
