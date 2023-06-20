@@ -26,8 +26,11 @@ model User {
 
   applications Application[]
   tokens Token[]
+  colleges College[]
+
   applicationProfile ApplicationProfile?
   classGrade Grade?
+  isCollege Boolean @default(false)
 
   @@map("users")
 }
@@ -119,6 +122,25 @@ model Grade {
   @@map("grades")
 }
 
+model College {
+  id        Int      @id @default(autoincrement())
+  createAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name String
+  code String @db.VarChar(4) @unique
+
+  city String
+  state String
+  country String
+
+  userId Int 
+  user   User? @relation(fields: [userId], references: [id])
+
+  applications Application[]
+
+}
+
 model Application {
   id        Int      @id @default(autoincrement())
   createAt  DateTime @default(now())
@@ -127,6 +149,8 @@ model Application {
   title       String
   description String?
   link        String
+
+  colleges College[]
 
   userId Int
   user   User? @relation(fields: [userId], references: [id])
