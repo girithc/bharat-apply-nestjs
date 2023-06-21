@@ -26,11 +26,13 @@ model User {
 
   applications Application[]
   tokens Token[]
-  colleges College[]
 
   applicationProfile ApplicationProfile?
   classGrade Grade?
+
   isCollege Boolean @default(false)
+  position String?
+  colleges College[]
 
   @@map("users")
 }
