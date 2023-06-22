@@ -21,7 +21,7 @@ model User {
   firstName  String
   lastName   String
   middleName String?
-  phone Int
+  phone Int?
 
   refreshToken String?
 
