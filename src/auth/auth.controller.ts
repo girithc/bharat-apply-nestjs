@@ -14,21 +14,51 @@ import {
   JwtRefreshTokenGuard,
 } from '../auth/guard';
 import { AuthService } from './auth.service';
-import { AuthDto, AuthDtoSignup } from './dto';
+import {
+  AuthDto_in,
+  AuthDto_out,
+  AuthDtoSignup_in,
+  AuthDtoSignup_out,
+} from './dto';
 import { Request } from 'express';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('signup')
-  signup(@Body() dto: AuthDtoSignup) {
-    return this.authService.signup(dto);
+  signup(@Body() dto: AuthDtoSignup_in) {
+    const dto_out: AuthDtoSignup_out =
+      new AuthDtoSignup_out();
+
+    dto_out.email = dto.email;
+    dto_out.firstName = dto.firstName;
+    dto_out.lastName = dto.lastName;
+    dto_out.password = dto.password;
+    dto_out.phone = Number(dto.phone);
+    if (dto.isCollege == 'true') {
+      dto_out.isCollege = true;
+    } else {
+      dto_out.isCollege = false;
+    }
+
+    return this.authService.signup(dto_out);
   }
 
   @HttpCode(HttpStatus.OK)
   @Post('signin')
-  signin(@Body() dto: AuthDto) {
-    return this.authService.signin(dto);
+  signin(@Body() dto: AuthDto_in) {
+    const dto_out: AuthDto_out =
+      new AuthDto_out();
+
+    dto_out.email = dto.email;
+    dto_out.password = dto.password;
+    if (dto.isCollege == 'true') {
+      dto_out.isCollege = true;
+    } else {
+      dto_out.isCollege = false;
+    }
+
+    return this.authService.signin(dto_out);
   }
 
   @UseGuards(JwtGuard)

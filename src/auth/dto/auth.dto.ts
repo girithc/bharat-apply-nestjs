@@ -1,10 +1,13 @@
 import {
+  IsBoolean,
   IsEmail,
   IsNotEmpty,
+  IsNumber,
+  IsOptional,
   IsString,
 } from 'class-validator';
 
-export class AuthDto {
+export class AuthDto_in {
   @IsEmail()
   @IsNotEmpty()
   email: string;
@@ -12,9 +15,27 @@ export class AuthDto {
   @IsString()
   @IsNotEmpty()
   password: string;
+
+  @IsString()
+  @IsNotEmpty()
+  isCollege: string;
 }
 
-export class AuthDtoSignup {
+export class AuthDto_out {
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+
+  @IsString()
+  @IsNotEmpty()
+  password: string;
+
+  @IsBoolean()
+  @IsOptional()
+  isCollege: boolean;
+}
+
+export class AuthDtoSignup_in {
   @IsEmail()
   @IsNotEmpty()
   email: string;
@@ -34,4 +55,34 @@ export class AuthDtoSignup {
   @IsString()
   @IsNotEmpty()
   lastName: string;
+
+  @IsString()
+  @IsOptional()
+  isCollege: string;
+}
+
+export class AuthDtoSignup_out {
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+
+  @IsString()
+  @IsNotEmpty()
+  password: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  phone: number;
+
+  @IsString()
+  @IsNotEmpty()
+  firstName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  lastName: string;
+
+  @IsBoolean()
+  @IsOptional()
+  isCollege: boolean;
 }

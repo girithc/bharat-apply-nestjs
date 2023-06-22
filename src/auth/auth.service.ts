@@ -3,7 +3,10 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { AuthDto, AuthDtoSignup } from './dto';
+import {
+  AuthDto_out,
+  AuthDtoSignup_out,
+} from './dto';
 
 //hash password
 import * as argon from 'argon2';
@@ -20,7 +23,7 @@ export class AuthService {
     private user: UserService,
   ) {}
 
-  async signup(dto: AuthDtoSignup) {
+  async signup(dto: AuthDtoSignup_out) {
     //generate password
     const hash = await this.hashData(
       dto.password,
@@ -33,31 +36,35 @@ export class AuthService {
           firstName: dto.firstName,
           lastName: dto.lastName,
           email: dto.email,
+          phone: dto.phone,
+          isCollege: dto.isCollege,
           hash,
         },
       });
 
-      const appProfile =
-        await this.prisma.applicationProfile.create(
-          {
+      if (!user.isCollege) {
+        const appProfile =
+          await this.prisma.applicationProfile.create(
+            {
+              data: {
+                userId: user.id,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                idProof: '',
+                idProofLinks: '',
+              },
+            },
+          );
+
+        const appGrade =
+          await this.prisma.grade.create({
             data: {
               userId: user.id,
-              firstName: user.firstName,
-              lastName: user.lastName,
-              idProof: '',
-              idProofLinks: '',
             },
-          },
-        );
+          });
 
-      const appGrade =
-        await this.prisma.grade.create({
-          data: {
-            userId: user.id,
-          },
-        });
-
-      console.log(appProfile, appGrade);
+        console.log(appProfile, appGrade);
+      }
 
       const tokens = await this.getTokens(
         user.id,
@@ -78,13 +85,15 @@ export class AuthService {
     }
   }
 
-  async signin(dto: AuthDto) {
-    const user =
-      await this.prisma.user.findUnique({
+  async signin(dto: AuthDto_out) {
+    const user = await this.prisma.user.findFirst(
+      {
         where: {
           email: dto.email,
+          isCollege: dto.isCollege,
         },
-      });
+      },
+    );
 
     if (!user) {
       throw new ForbiddenException(
