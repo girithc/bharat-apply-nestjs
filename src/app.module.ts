@@ -6,6 +6,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { TokenModule } from './token/token.module';
 import { ApplicationProfileModule } from './applicationprofile/application-profile.module';
+import { CollegeModule } from './college/college.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ApplicationProfileModule } from './applicationprofile/application-profi
     PrismaModule,
     TokenModule,
     ApplicationProfileModule,
+    CollegeModule,
   ],
   controllers: [],
   providers: [],
