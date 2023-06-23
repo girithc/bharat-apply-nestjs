@@ -11,7 +11,7 @@ import {
   Post,
   Response,
   UseGuards,
-  Header
+  Header,
 } from '@nestjs/common';
 import { JwtGuard } from 'src/auth/guard';
 import { TokenService } from './token.service';
@@ -40,12 +40,11 @@ export class TokenController {
   }
 
   @Get()
-  @Header('Access-Control-Allow-Origin','*')
+  @Header('Access-Control-Allow-Origin', '*')
   getTokens(@GetUser('id') userId: number) {
     console.log('getTokens');
     return this.tokenService.getTokens(userId);
   }
-
 
   @Get('recent')
   getMostRecentToken(
@@ -67,8 +66,6 @@ export class TokenController {
       tokenId,
     );
   }
-
-
 
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')

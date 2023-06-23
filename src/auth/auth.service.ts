@@ -64,6 +64,7 @@ export class AuthService {
           });
 
         console.log(appProfile, appGrade);
+      } else {
       }
 
       const tokens = await this.getTokens(
