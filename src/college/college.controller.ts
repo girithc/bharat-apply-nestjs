@@ -19,6 +19,8 @@ export class CollegeController {
     @GetUser('id') userId: number,
     @Body() dto: College,
   ) {
+    console.log('UserId: ', userId);
+    console.log('College Dto: ', dto);
     return this.college.createCollege(
       userId,
       dto,
