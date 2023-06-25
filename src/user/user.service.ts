@@ -59,6 +59,24 @@ export class UserService {
       },
     });
 
+    await this.prisma.token.deleteMany({
+      where: {
+        userId: userId,
+      },
+    });
+
+    await this.prisma.application.deleteMany({
+      where: {
+        userId: userId,
+      },
+    });
+
+    await this.prisma.applicationProfile.deleteMany({
+      where: {
+        userId: userId,
+      },
+    });
+
     await this.prisma.user.delete({
       where: {
         id: userId,
