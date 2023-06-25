@@ -30,6 +30,8 @@ export class JwtStratgy extends PassportStrategy(
     email: string;
   }) {
     console.log('JWT Strategy', { payload });
+
+    console.log('JWT: ', ExtractJwt.fromAuthHeaderAsBearerToken());
     const user =
       await this.prisma.user.findUnique({
         where: {
