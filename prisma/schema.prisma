@@ -131,7 +131,7 @@ model College {
   updatedAt DateTime @updatedAt
 
   name String
-  code String @db.VarChar(4) @unique
+  code String @unique
 
   city String
   state String
