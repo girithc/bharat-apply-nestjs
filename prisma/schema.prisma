@@ -33,7 +33,7 @@ model User {
 
   isCollege Boolean @default(false)
   position String?
-  colleges College[]
+  colleges College[]  
 
   @@map("users")
 }

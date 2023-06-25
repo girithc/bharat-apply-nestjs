@@ -52,10 +52,18 @@ export class UserService {
       );
     }
 
+
+    await this.prisma.college.deleteMany({
+      where: {
+        userId: userId,
+      },
+    });
+
     await this.prisma.user.delete({
       where: {
         id: userId,
       },
     });
+
   }
 }
