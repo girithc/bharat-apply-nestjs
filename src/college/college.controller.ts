@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -25,5 +26,19 @@ export class CollegeController {
       userId,
       dto,
     );
+  }
+
+  @Get()
+  getCollegesByUserId(
+    @GetUser('id') userId: number,
+  ) {
+    return this.college.getCollegesByUserId(
+      userId,
+    );
+  }
+
+  @Get('all')
+  getColleges() {
+    return this.college.getColleges();
   }
 }

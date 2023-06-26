@@ -23,4 +23,29 @@ export class CollegeService {
 
     return college;
   }
+
+  async getColleges() {
+    return await this.prisma.college.findMany({
+      select: {
+        name: true,
+        code: true,
+        city: true,
+        state: true,
+      },
+    });
+  }
+
+  async getCollegesByUserId(userId: number) {
+    return await this.prisma.college.findMany({
+      where: {
+        userId: userId,
+      },
+      select: {
+        name: true,
+        code: true,
+        city: true,
+        state: true,
+      },
+    });
+  }
 }

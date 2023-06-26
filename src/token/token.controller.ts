@@ -5,11 +5,9 @@ import {
   Get,
   HttpCode,
   HttpStatus,
-  Options,
   Param,
   ParseIntPipe,
   Post,
-  Response,
   UseGuards,
   Header,
 } from '@nestjs/common';
@@ -18,7 +16,6 @@ import { TokenService } from './token.service';
 
 import { CreateTokenDto } from './dto';
 import { GetUser } from 'src/auth/decorator';
-import { response } from 'express';
 
 @UseGuards(JwtGuard)
 @Controller('token')
