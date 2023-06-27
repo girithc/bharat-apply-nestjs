@@ -2,6 +2,9 @@ import {
   Body,
   Controller,
   Get,
+  Param,
+  ParseIntPipe,
+  Patch,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -40,5 +43,35 @@ export class CollegeController {
   @Get('all')
   getColleges() {
     return this.college.getColleges();
+  }
+
+  @Get(':id')
+  getCollegeById(
+    @GetUser('id') userId: number,
+    @Param('id', ParseIntPipe)
+    collegeId: number,
+  ) {
+    console.log('College Controller ');
+    console.log('UserId: ', userId);
+    console.log('CollegeId', collegeId);
+
+    return this.college.getCollegeById(
+      userId,
+      collegeId,
+    );
+  }
+
+  @Patch(':id')
+  editCollege(
+    @GetUser('id') userId: number,
+    @Body() dto: College,
+    @Param('id', ParseIntPipe)
+    collegeId: number,
+  ) {
+    return this.college.editCollegeById(
+      userId,
+      collegeId,
+      dto,
+    );
   }
 }
