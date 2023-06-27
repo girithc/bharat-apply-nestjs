@@ -31,6 +31,7 @@ export class CollegeService {
         code: true,
         city: true,
         state: true,
+        id: true,
       },
     });
   }
@@ -45,6 +46,7 @@ export class CollegeService {
         code: true,
         city: true,
         state: true,
+        id: true,
       },
     });
   }
