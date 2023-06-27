@@ -50,6 +50,7 @@ export class CollegeService {
         code: true,
         city: true,
         state: true,
+        country: true,
         id: true,
       },
     });
