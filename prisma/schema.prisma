@@ -140,8 +140,24 @@ model College {
   userId Int 
   user   User? @relation(fields: [userId], references: [id])
 
+  courses Course[]
   applications Application[]
+}
 
+model Course {
+  id        Int      @id @default(autoincrement())
+  createAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name String
+  code String 
+
+  stream String
+  department String
+  subject String
+
+  collegeId Int 
+  college  College? @relation(fields: [collegeId], references: [id])
 }
 
 model Application {
