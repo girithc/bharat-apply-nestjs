@@ -81,6 +81,9 @@ export class CollegeController {
     @GetUser('id') userId: number,
     @Param('id', ParseIntPipe) collegeId: number,
   ) {
+    console.log('College Controller');
+    console.log('User Id: ', userId);
+    console.log('College Id:', collegeId);
     return this.college.deleteCollegeById(
       userId,
       collegeId,

@@ -105,8 +105,12 @@ export class CollegeService {
     userId: number,
     collegeId: number,
   ) {
+    console.log('College Service');
+    console.log('User Id: ', userId);
+    console.log('College Id:', collegeId);
+
     const college =
-      await this.prisma.application.findFirst({
+      await this.prisma.college.findFirst({
         where: {
           id: collegeId,
           userId: userId,
