@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
@@ -72,6 +73,17 @@ export class CollegeController {
       userId,
       collegeId,
       dto,
+    );
+  }
+
+  @Delete(':id')
+  deleteCollegeById(
+    @GetUser('id') userId: number,
+    @Param('id', ParseIntPipe) collegeId: number,
+  ) {
+    return this.college.deleteCollegeById(
+      userId,
+      collegeId,
     );
   }
 }

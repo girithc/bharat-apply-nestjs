@@ -100,4 +100,28 @@ export class CollegeService {
       },
     });
   }
+
+  async deleteCollegeById(
+    userId: number,
+    collegeId: number,
+  ) {
+    const college =
+      await this.prisma.application.findFirst({
+        where: {
+          id: collegeId,
+          userId: userId,
+        },
+      });
+    if (!college || college.userId !== userId) {
+      throw new ForbiddenException(
+        'Access to resource is denied',
+      );
+    }
+
+    await this.prisma.college.delete({
+      where: {
+        id: collegeId,
+      },
+    });
+  }
 }
