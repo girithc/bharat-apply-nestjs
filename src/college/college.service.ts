@@ -127,5 +127,7 @@ export class CollegeService {
         id: collegeId,
       },
     });
+
+    return this.getCollegesByUserId(userId);
   }
 }
