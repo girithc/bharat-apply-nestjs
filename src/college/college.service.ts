@@ -24,7 +24,7 @@ export class CollegeService {
       },
     });
 
-    return this.getCollegesByUserId(userId);
+    return await this.getCollegesByUserId(userId);
   }
 
   async getColleges() {
@@ -91,7 +91,7 @@ export class CollegeService {
       );
     }
 
-    this.prisma.college.update({
+    await this.prisma.college.update({
       where: {
         id: collegeId,
       },
@@ -100,7 +100,7 @@ export class CollegeService {
       },
     });
 
-    return this.getCollegesByUserId(userId);
+    return await this.getCollegesByUserId(userId);
   }
 
   async deleteCollegeById(
@@ -130,6 +130,6 @@ export class CollegeService {
       },
     });
 
-    return this.getCollegesByUserId(userId);
+    return await this.getCollegesByUserId(userId);
   }
 }
