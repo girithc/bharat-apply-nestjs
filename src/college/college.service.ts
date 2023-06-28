@@ -13,19 +13,18 @@ export class CollegeService {
     userId: number,
     dto: College,
   ) {
-    const college =
-      await this.prisma.college.create({
-        data: {
-          userId: userId,
-          name: dto.name,
-          code: dto.code,
-          city: dto.city,
-          state: dto.state,
-          country: dto.country,
-        },
-      });
+    await this.prisma.college.create({
+      data: {
+        userId: userId,
+        name: dto.name,
+        code: dto.code,
+        city: dto.city,
+        state: dto.state,
+        country: dto.country,
+      },
+    });
 
-    return college;
+    return this.getCollegesByUserId(userId);
   }
 
   async getColleges() {
@@ -35,6 +34,7 @@ export class CollegeService {
         code: true,
         city: true,
         state: true,
+        country: true,
         id: true,
       },
     });
@@ -91,7 +91,7 @@ export class CollegeService {
       );
     }
 
-    return this.prisma.college.update({
+    this.prisma.college.update({
       where: {
         id: collegeId,
       },
@@ -99,6 +99,8 @@ export class CollegeService {
         ...dto,
       },
     });
+
+    return this.getCollegesByUserId(userId);
   }
 
   async deleteCollegeById(
