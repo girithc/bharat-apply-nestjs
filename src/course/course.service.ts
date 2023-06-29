@@ -42,6 +42,7 @@ export class CourseService {
         endDate: true,
         admissionStartDate: true,
         admissionEndDate: true,
+        id: true,
       },
     });
   }
