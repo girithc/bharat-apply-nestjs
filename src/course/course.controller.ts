@@ -32,6 +32,19 @@ export class CourseController {
     );
   }
 
+  @Get(':courseId/college/:collegeId')
+  async getCourseById(
+    @Param('collegeId', ParseIntPipe)
+    collegeId: number,
+    @Param('courseId', ParseIntPipe)
+    courseId: number,
+  ) {
+    return await this.course.getCourseById(
+      collegeId,
+      courseId,
+    );
+  }
+
   @Get(':id')
   async getCoursesByCollegeId(
     @Param('id', ParseIntPipe) collegeId: number,

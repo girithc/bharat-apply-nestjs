@@ -47,6 +47,31 @@ export class CourseService {
     });
   }
 
+  async getCourseById(
+    collegeId: number,
+    courseId: number,
+  ) {
+    return this.prisma.course.findFirst({
+      where: {
+        collegeId: collegeId,
+        id: courseId,
+      },
+      select: {
+        name: true,
+        subject: true,
+        code: true,
+        department: true,
+        stream: true,
+        collegeId: true,
+        startDate: true,
+        endDate: true,
+        admissionStartDate: true,
+        admissionEndDate: true,
+        id: true,
+      },
+    });
+  }
+
   async editCourseById(
     courseId: number,
     collegeId: number,
