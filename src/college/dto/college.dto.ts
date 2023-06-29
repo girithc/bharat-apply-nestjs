@@ -2,7 +2,6 @@ import {
   IsNotEmpty,
   IsString,
   Length,
-  min,
 } from 'class-validator';
 
 export class College {

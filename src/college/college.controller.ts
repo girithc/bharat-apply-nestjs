@@ -20,34 +20,34 @@ export class CollegeController {
   constructor(private college: CollegeService) {}
 
   @Post()
-  createCollege(
+  async createCollege(
     @GetUser('id') userId: number,
     @Body() dto: College,
   ) {
     console.log('UserId: ', userId);
     console.log('College Dto: ', dto);
-    return this.college.createCollege(
+    return await this.college.createCollege(
       userId,
       dto,
     );
   }
 
   @Get()
-  getCollegesByUserId(
+  async getCollegesByUserId(
     @GetUser('id') userId: number,
   ) {
-    return this.college.getCollegesByUserId(
+    return await this.college.getCollegesByUserId(
       userId,
     );
   }
 
   @Get('all')
-  getColleges() {
-    return this.college.getColleges();
+  async getColleges() {
+    return await this.college.getColleges();
   }
 
   @Get(':id')
-  getCollegeById(
+  async getCollegeById(
     @GetUser('id') userId: number,
     @Param('id', ParseIntPipe)
     collegeId: number,
@@ -56,20 +56,20 @@ export class CollegeController {
     console.log('UserId: ', userId);
     console.log('CollegeId', collegeId);
 
-    return this.college.getCollegeById(
+    return await this.college.getCollegeById(
       userId,
       collegeId,
     );
   }
 
   @Patch(':id')
-  editCollege(
+  async editCollege(
     @GetUser('id') userId: number,
     @Body() dto: College,
     @Param('id', ParseIntPipe)
     collegeId: number,
   ) {
-    return this.college.editCollegeById(
+    return await this.college.editCollegeById(
       userId,
       collegeId,
       dto,
@@ -77,14 +77,14 @@ export class CollegeController {
   }
 
   @Delete(':id')
-  deleteCollegeById(
+  async deleteCollegeById(
     @GetUser('id') userId: number,
     @Param('id', ParseIntPipe) collegeId: number,
   ) {
     console.log('College Controller');
     console.log('User Id: ', userId);
     console.log('College Id:', collegeId);
-    return this.college.deleteCollegeById(
+    return await this.college.deleteCollegeById(
       userId,
       collegeId,
     );

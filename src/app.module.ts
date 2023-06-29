@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TokenModule } from './token/token.module';
 import { ApplicationProfileModule } from './applicationprofile/application-profile.module';
 import { CollegeModule } from './college/college.module';
+import { CourseModule } from './course/course.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { CollegeModule } from './college/college.module';
     TokenModule,
     ApplicationProfileModule,
     CollegeModule,
+    CourseModule,
   ],
   controllers: [],
   providers: [],
