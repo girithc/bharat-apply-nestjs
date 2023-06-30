@@ -28,7 +28,7 @@ export class CourseService {
   }
 
   async getCoursesByCollegeId(collegeId: number) {
-    return this.prisma.course.findMany({
+    return await this.prisma.course.findMany({
       where: {
         collegeId,
       },
@@ -51,7 +51,14 @@ export class CourseService {
     collegeId: number,
     courseId: number,
   ) {
-    return this.prisma.course.findFirst({
+    console.log(
+      'Course Service - getCourseById ',
+      courseId,
+      ' CollegeId ',
+      collegeId,
+    );
+
+    return await this.prisma.course.findFirst({
       where: {
         collegeId: collegeId,
         id: courseId,
