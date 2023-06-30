@@ -32,7 +32,7 @@ export class CourseController {
     );
   }
 
-  @Get(':courseId/college/:collegeId')
+  @Get(':courseId/:collegeId')
   async getCourseById(
     @Param('courseId', ParseIntPipe)
     courseId: number,
