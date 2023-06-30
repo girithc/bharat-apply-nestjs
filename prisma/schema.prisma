@@ -143,6 +143,8 @@ model College {
 
   courses Course[]
   applications Application[]
+
+  @@map("colleges")
 }
 
 model Course {
@@ -168,6 +170,8 @@ model Course {
 
   userId Int 
   user   User? @relation(fields: [userId], references: [id])
+
+  @@map("courses")
 }
 
 model Application {
