@@ -34,10 +34,10 @@ export class CourseController {
 
   @Get(':courseId/college/:collegeId')
   async getCourseById(
-    @Param('collegeId', ParseIntPipe)
-    collegeId: number,
     @Param('courseId', ParseIntPipe)
     courseId: number,
+    @Param('collegeId', ParseIntPipe)
+    collegeId: number,
   ) {
     console.log(
       'Course Controller - getCourseById ',
@@ -55,6 +55,11 @@ export class CourseController {
   async getCoursesByCollegeId(
     @Param('id', ParseIntPipe) collegeId: number,
   ) {
+    console.log(
+      'Course Controller - getCoursesByCollegeId',
+      ' CollegeId ',
+      collegeId,
+    );
     return await this.course.getCoursesByCollegeId(
       collegeId,
     );
