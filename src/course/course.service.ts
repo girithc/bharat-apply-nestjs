@@ -111,7 +111,7 @@ export class CourseService {
     });
 
     return await this.getCoursesByCollegeId(
-      courseId,
+      collegeId,
     );
   }
 
