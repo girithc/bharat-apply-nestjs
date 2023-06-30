@@ -39,6 +39,12 @@ export class CourseController {
     @Param('courseId', ParseIntPipe)
     courseId: number,
   ) {
+    console.log(
+      'Course Controller - getCourseById ',
+      courseId,
+      ' CollegeId ',
+      collegeId,
+    );
     return await this.course.getCourseById(
       collegeId,
       courseId,
