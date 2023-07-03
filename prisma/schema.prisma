@@ -26,7 +26,6 @@ model User {
   refreshToken String?
   applicationProfile ApplicationProfile?
   classGrade Grade?
-  collegesAdded String
 
   isCollege Boolean @default(false)
   position String?
@@ -74,6 +73,10 @@ model ApplicationProfile {
   mothersFirstName String?
   mothersLastName String?
   mothersDateOfBirth String?
+
+
+  collegesAdded String
+  collegesApplied String
 
   userId Int @unique
   user   User @relation(fields: [userId], references: [id])
