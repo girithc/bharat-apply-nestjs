@@ -24,15 +24,15 @@ model User {
   phone Int?
 
   refreshToken String?
-
-  applications Application[]
-  tokens Token[]
-
   applicationProfile ApplicationProfile?
   classGrade Grade?
+  collegesAdded String
 
   isCollege Boolean @default(false)
   position String?
+
+  applications Application[]
+  tokens Token[]
   colleges College[]  
   courses Course[]
 
