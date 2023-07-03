@@ -43,16 +43,4 @@ export class UserController {
   ////////
   // Add College Ids
   ////////
-
-  @Patch('me/:collegeId')
-  addCollegeToUser(
-    @GetUser('id') userId: number,
-    @Param('collegeId', ParseIntPipe)
-    collegeId: number,
-  ) {
-    return this.userService.addCollegeToUser(
-      userId,
-      collegeId,
-    );
-  }
 }

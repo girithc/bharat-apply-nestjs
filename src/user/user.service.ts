@@ -84,26 +84,4 @@ export class UserService {
       },
     });
   }
-
-  async addCollegeToUser(
-    userId: number,
-    collegeId: number,
-  ) {
-    await this.prisma.user.update({
-      where: {
-        id: userId,
-      },
-      data: {
-        colleges: {
-          connect: {
-            id: collegeId,
-          },
-        },
-      },
-      select: {
-        id: true,
-        colleges: true,
-      },
-    });
-  }
 }
