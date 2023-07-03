@@ -15,6 +15,8 @@ async function bootstrap() {
       '/.entri-b56075a4324b.herokuapp.com$/',
       'https://bharatapply-backend.herokuapp.com',
       '/.bharatapply-backend.herokuapp.com$/',
+      'https://bharatapply-backend.herokuapp.com/auth',
+      '/.bharatapply-backend.herokuapp.com/auth$/',
       'https://bharatapply-backend.herokuapp.com/token',
       '/.bharat-apply-backend.herokuapp.com/token$/',
       'https://bharatapply-backend.herokuapp.com/college',
