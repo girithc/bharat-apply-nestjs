@@ -13,6 +13,8 @@ async function bootstrap() {
     origin: [
       'https://entri-b56075a4324b.herokuapp.com',
       '/.entri-b56075a4324b.herokuapp.com$/',
+      'https://bharatapply-backend.herokuapp.com',
+      '/.bharatapply-backend.herokuapp.com$/',
       'https://bharatapply-backend.herokuapp.com/token',
       '/.bharat-apply-backend.herokuapp.com/token$/',
       'https://bharatapply-backend.herokuapp.com/college',
@@ -20,7 +22,7 @@ async function bootstrap() {
       'https://bharatapply-backend.herokuapp.com/course',
       '/.bharat-apply-backend.herokuapp.com/course$/',
       'http://localhost:4200',
-      'https://api.openai.com/v1/completions',
+      '/.localhost:4200$/',
     ],
     methods: [
       'GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS',
