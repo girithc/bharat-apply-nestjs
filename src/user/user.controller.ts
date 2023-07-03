@@ -5,6 +5,8 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Param,
+  ParseIntPipe,
   Patch,
   UseGuards,
 } from '@nestjs/common';
@@ -18,6 +20,7 @@ import { UserService } from './user.service';
 @Controller('users')
 export class UserController {
   constructor(private userService: UserService) {}
+
   @Get('me')
   getMe(@GetUser() user: User) {
     return user;
@@ -35,5 +38,21 @@ export class UserController {
   @Delete()
   deleteUser(@GetUser('id') userId: number) {
     return this.userService.deleteUser(userId);
+  }
+
+  ////////
+  // Add College Ids
+  ////////
+
+  @Patch('me/:collegeId')
+  addCollegeToUser(
+    @GetUser('id') userId: number,
+    @Param('collegeId', ParseIntPipe)
+    collegeId: number,
+  ) {
+    return this.userService.addCollegeToUser(
+      userId,
+      collegeId,
+    );
   }
 }
