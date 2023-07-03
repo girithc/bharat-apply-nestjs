@@ -8,7 +8,7 @@ CREATE TABLE "users" (
     "firstName" TEXT NOT NULL,
     "lastName" TEXT NOT NULL,
     "middleName" TEXT,
-    "phone" INTEGER NOT NULL,
+    "phone" INTEGER,
     "refreshToken" TEXT,
     "isCollege" BOOLEAN NOT NULL DEFAULT false,
     "position" TEXT,
@@ -46,6 +46,8 @@ CREATE TABLE "applicationprofiles" (
     "mothersFirstName" TEXT,
     "mothersLastName" TEXT,
     "mothersDateOfBirth" TEXT,
+    "collegesAdded" TEXT[] DEFAULT ARRAY['']::TEXT[],
+    "collegesApplied" TEXT[] DEFAULT ARRAY['']::TEXT[],
     "userId" INTEGER NOT NULL,
     "college" TEXT[] DEFAULT ARRAY['']::TEXT[],
 
@@ -91,18 +93,38 @@ CREATE TABLE "grades" (
 );
 
 -- CreateTable
-CREATE TABLE "College" (
+CREATE TABLE "colleges" (
     "id" SERIAL NOT NULL,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "name" TEXT NOT NULL,
-    "code" VARCHAR(4) NOT NULL,
+    "code" TEXT NOT NULL,
     "city" TEXT NOT NULL,
     "state" TEXT NOT NULL,
     "country" TEXT NOT NULL,
     "userId" INTEGER NOT NULL,
 
-    CONSTRAINT "College_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "colleges_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "courses" (
+    "id" SERIAL NOT NULL,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "name" TEXT NOT NULL,
+    "code" TEXT NOT NULL,
+    "stream" TEXT NOT NULL,
+    "department" TEXT NOT NULL,
+    "subject" TEXT NOT NULL,
+    "startDate" TIMESTAMP(3) NOT NULL,
+    "endDate" TIMESTAMP(3) NOT NULL,
+    "admissionStartDate" TIMESTAMP(3) NOT NULL,
+    "admissionEndDate" TIMESTAMP(3) NOT NULL,
+    "collegeId" INTEGER NOT NULL,
+    "userId" INTEGER NOT NULL,
+
+    CONSTRAINT "courses_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -149,7 +171,10 @@ CREATE UNIQUE INDEX "applicationprofiles_userId_key" ON "applicationprofiles"("u
 CREATE UNIQUE INDEX "grades_userId_key" ON "grades"("userId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "College_code_key" ON "College"("code");
+CREATE UNIQUE INDEX "colleges_code_key" ON "colleges"("code");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "courses_code_key" ON "courses"("code");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_ApplicationToCollege_AB_unique" ON "_ApplicationToCollege"("A", "B");
@@ -164,7 +189,13 @@ ALTER TABLE "applicationprofiles" ADD CONSTRAINT "applicationprofiles_userId_fke
 ALTER TABLE "grades" ADD CONSTRAINT "grades_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "College" ADD CONSTRAINT "College_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "colleges" ADD CONSTRAINT "colleges_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "courses" ADD CONSTRAINT "courses_collegeId_fkey" FOREIGN KEY ("collegeId") REFERENCES "colleges"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "courses" ADD CONSTRAINT "courses_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "applications" ADD CONSTRAINT "applications_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -176,4 +207,4 @@ ALTER TABLE "tokens" ADD CONSTRAINT "tokens_userId_fkey" FOREIGN KEY ("userId") 
 ALTER TABLE "_ApplicationToCollege" ADD CONSTRAINT "_ApplicationToCollege_A_fkey" FOREIGN KEY ("A") REFERENCES "applications"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_ApplicationToCollege" ADD CONSTRAINT "_ApplicationToCollege_B_fkey" FOREIGN KEY ("B") REFERENCES "College"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_ApplicationToCollege" ADD CONSTRAINT "_ApplicationToCollege_B_fkey" FOREIGN KEY ("B") REFERENCES "colleges"("id") ON DELETE CASCADE ON UPDATE CASCADE;
