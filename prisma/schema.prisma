@@ -24,14 +24,15 @@ model User {
   phone Int?
 
   refreshToken String?
+
+  applications Application[]
+  tokens Token[]
+
   applicationProfile ApplicationProfile?
   classGrade Grade?
 
   isCollege Boolean @default(false)
   position String?
-
-  applications Application[]
-  tokens Token[]
   colleges College[]  
   courses Course[]
 
@@ -73,10 +74,6 @@ model ApplicationProfile {
   mothersFirstName String?
   mothersLastName String?
   mothersDateOfBirth String?
-
-
-  collegesAdded String[] @default([""])
-  collegesApplied String[] @default([""])
 
   userId Int @unique
   user   User @relation(fields: [userId], references: [id])
