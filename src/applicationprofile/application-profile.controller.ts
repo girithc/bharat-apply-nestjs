@@ -308,6 +308,21 @@ export class ApplicationProfileController {
     );
   }
 
+  @Patch(':id/:collegeId')
+  addCollegeToApplicationProfile(
+    @GetUser('id') userId: number,
+    @Param('id', ParseIntPipe)
+    applicationId: number,
+    @Param('collegeId', ParseIntPipe)
+    collegeId: number,
+  ) {
+    return this.applicationProfileService.addCollegeToApplicationProfile(
+      userId,
+      applicationId,
+      collegeId,
+    );
+  }
+
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
   deleteApplicationProfileById(

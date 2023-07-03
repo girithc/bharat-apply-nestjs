@@ -265,6 +265,49 @@ export class ApplicationProfileService {
     });
   }
 
+  async addCollegeToApplicationProfile(
+    userId: number,
+    applicationId: number,
+    collegeId: number,
+  ) {
+    const appProfile =
+      await this.prisma.applicationProfile.findFirst(
+        {
+          where: {
+            id: applicationId,
+            userId: userId,
+          },
+        },
+      );
+
+    if (
+      !appProfile ||
+      appProfile.userId !== userId
+    ) {
+      throw new ForbiddenException(
+        'Access to resource is denied',
+      );
+    }
+
+    const colleges = appProfile.collegesAdded;
+    if (colleges.includes(collegeId.toString())) {
+      return { message: 'Value already exists.' };
+    } else {
+      colleges.push(collegeId.toString());
+    }
+
+    return await this.prisma.applicationProfile.update(
+      {
+        where: {
+          id: applicationId,
+        },
+        data: {
+          collegesAdded: colleges,
+        },
+      },
+    );
+  }
+
   async editApplicationGradeTwelve(
     userId: number,
     appGradeId: number,
