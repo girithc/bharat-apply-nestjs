@@ -46,8 +46,6 @@ CREATE TABLE "applicationprofiles" (
     "mothersFirstName" TEXT,
     "mothersLastName" TEXT,
     "mothersDateOfBirth" TEXT,
-    "collegesAdded" TEXT[] DEFAULT ARRAY['']::TEXT[],
-    "collegesApplied" TEXT[] DEFAULT ARRAY['']::TEXT[],
     "userId" INTEGER NOT NULL,
     "college" TEXT[] DEFAULT ARRAY['']::TEXT[],
 
