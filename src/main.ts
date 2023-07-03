@@ -20,6 +20,7 @@ async function bootstrap() {
       'https://bharatapply-backend.herokuapp.com/course',
       '/.bharat-apply-backend.herokuapp.com/course$/',
       'http://localhost:4200',
+      'https://localhost:4200',
       'https://api.openai.com/v1/completions',
     ],
     methods: [
