@@ -75,8 +75,8 @@ model ApplicationProfile {
   mothersDateOfBirth String?
 
 
-  collegesAdded String
-  collegesApplied String
+  collegesAdded String[]
+  collegesApplied String[]
 
   userId Int @unique
   user   User @relation(fields: [userId], references: [id])
