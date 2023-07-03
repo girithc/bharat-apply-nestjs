@@ -270,6 +270,12 @@ export class ApplicationProfileService {
     applicationId: number,
     collegeId: number,
   ) {
+    console.log(
+      'App Profile Service ',
+      applicationId,
+      ' ',
+      collegeId,
+    );
     const appProfile =
       await this.prisma.applicationProfile.findFirst(
         {

@@ -316,6 +316,12 @@ export class ApplicationProfileController {
     @Param('collegeId', ParseIntPipe)
     collegeId: number,
   ) {
+    console.log(
+      'App Profile Controller ',
+      applicationId,
+      ' ',
+      collegeId,
+    );
     return this.applicationProfileService.addCollegeToApplicationProfile(
       userId,
       applicationId,
