@@ -344,9 +344,9 @@ export class ApplicationProfileService {
       );
     }
 
-    const colleges = appProfile.collegesAdded;
+    let colleges = appProfile.collegesAdded;
     if (colleges.includes(collegeId.toString())) {
-      colleges.filter(
+      colleges = colleges.filter(
         (value) => value !== collegeId.toString(),
       );
 
