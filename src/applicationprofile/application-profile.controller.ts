@@ -32,6 +32,7 @@ import {
   ApplicationGradeTwelveDto_in,
   ApplicationGradeTwelveDto_out,
 } from './dto/application-grade.dto';
+import { SampleDto } from './dto/sample.dto';
 
 @UseGuards(JwtGuard)
 @Controller('application-profile')
@@ -61,9 +62,10 @@ export class ApplicationProfileController {
     );
   }
 
-  @Get(':id/:collegeId')
+  @Patch(':id/:collegeId')
   addCollegeToApplicationProfile(
     @GetUser('id') userId: number,
+    @Body() dto: SampleDto,
     @Param('id', ParseIntPipe)
     applicationId: number,
     @Param('collegeId', ParseIntPipe)
@@ -78,13 +80,11 @@ export class ApplicationProfileController {
       userId,
     );
 
-    /*
     return this.applicationProfileService.addCollegeToApplicationProfile(
       userId,
       applicationId,
       collegeId,
     );
-    */
   }
 
   @Get()
