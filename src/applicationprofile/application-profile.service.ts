@@ -314,6 +314,60 @@ export class ApplicationProfileService {
     );
   }
 
+  async removeCollegeFromApplicationProfile(
+    userId: number,
+    applicationId: number,
+    collegeId: number,
+  ) {
+    console.log(
+      'App Profile Service ',
+      applicationId,
+      ' ',
+      collegeId,
+    );
+    const appProfile =
+      await this.prisma.applicationProfile.findFirst(
+        {
+          where: {
+            id: applicationId,
+            userId: userId,
+          },
+        },
+      );
+
+    if (
+      !appProfile ||
+      appProfile.userId !== userId
+    ) {
+      throw new ForbiddenException(
+        'Access to resource is denied',
+      );
+    }
+
+    const colleges = appProfile.collegesAdded;
+    if (colleges.includes(collegeId.toString())) {
+      colleges.filter(
+        (value) => value !== collegeId.toString(),
+      );
+    } else {
+      return {
+        message:
+          'Value already removed from collegesAdded',
+      };
+    }
+
+    return await this.prisma.applicationProfile.update(
+      {
+        where: {
+          id: applicationId,
+        },
+        data: {
+          collegesAdded: colleges,
+        },
+      },
+    );
+  }
+
   async editApplicationGradeTwelve(
     userId: number,
     appGradeId: number,
