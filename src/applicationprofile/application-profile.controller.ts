@@ -61,7 +61,7 @@ export class ApplicationProfileController {
     );
   }
 
-  @Post(':id/:collegeId')
+  @Get(':id/:collegeId')
   addCollegeToApplicationProfile(
     @GetUser('id') userId: number,
     @Param('id', ParseIntPipe)
