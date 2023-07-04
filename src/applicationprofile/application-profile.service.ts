@@ -349,12 +349,16 @@ export class ApplicationProfileService {
       colleges.filter(
         (value) => value !== collegeId.toString(),
       );
+
+      console.log('Colleges1: ', colleges);
     } else {
       return {
         message:
           'Value already removed from collegesAdded',
       };
     }
+
+    console.log('Colleges2: ', colleges);
 
     return await this.prisma.applicationProfile.update(
       {
