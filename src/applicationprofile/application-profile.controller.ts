@@ -74,12 +74,17 @@ export class ApplicationProfileController {
       applicationId,
       ' ',
       collegeId,
+      ' User Id: ',
+      userId,
     );
+
+    /*
     return this.applicationProfileService.addCollegeToApplicationProfile(
       userId,
       applicationId,
       collegeId,
     );
+    */
   }
 
   @Get()
