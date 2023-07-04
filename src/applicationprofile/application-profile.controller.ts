@@ -61,6 +61,27 @@ export class ApplicationProfileController {
     );
   }
 
+  @Post(':id/:collegeId')
+  addCollegeToApplicationProfile(
+    @GetUser('id') userId: number,
+    @Param('id', ParseIntPipe)
+    applicationId: number,
+    @Param('collegeId', ParseIntPipe)
+    collegeId: number,
+  ) {
+    console.log(
+      'App Profile Controller ',
+      applicationId,
+      ' ',
+      collegeId,
+    );
+    return this.applicationProfileService.addCollegeToApplicationProfile(
+      userId,
+      applicationId,
+      collegeId,
+    );
+  }
+
   @Get()
   getApplicationProfiles(
     @GetUser('id') userId: number,
@@ -305,27 +326,6 @@ export class ApplicationProfileController {
       userId,
       applicationId,
       dto,
-    );
-  }
-
-  @Patch(':id/:collegeId')
-  addCollegeToApplicationProfile(
-    @GetUser('id') userId: number,
-    @Param('id', ParseIntPipe)
-    applicationId: number,
-    @Param('collegeId', ParseIntPipe)
-    collegeId: number,
-  ) {
-    console.log(
-      'App Profile Controller ',
-      applicationId,
-      ' ',
-      collegeId,
-    );
-    return this.applicationProfileService.addCollegeToApplicationProfile(
-      userId,
-      applicationId,
-      collegeId,
     );
   }
 
