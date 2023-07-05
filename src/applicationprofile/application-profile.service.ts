@@ -271,10 +271,8 @@ export class ApplicationProfileService {
     collegeId: number,
   ) {
     console.log(
-      'App Profile Service ',
+      'addCollegeToApplicationProfile ',
       applicationId,
-      ' ',
-      collegeId,
     );
     const appProfile =
       await this.prisma.applicationProfile.findFirst(
@@ -295,6 +293,11 @@ export class ApplicationProfileService {
       );
     }
 
+    console.log(
+      ' Courses Added ',
+      appProfile.coursesAdded,
+    );
+
     const colleges = appProfile.collegesAdded;
     if (colleges.includes(collegeId.toString())) {
       return { message: 'Value already exists.' };
@@ -309,6 +312,65 @@ export class ApplicationProfileService {
         },
         data: {
           collegesAdded: colleges,
+        },
+      },
+    );
+  }
+
+  async addCourseToApplicationProfile(
+    userId: number,
+    applicationId: number,
+    collegeId: number,
+    courseId: number,
+  ) {
+    const appProfile =
+      await this.prisma.applicationProfile.findFirst(
+        {
+          where: {
+            id: applicationId,
+            userId: userId,
+          },
+        },
+      );
+    const college =
+      await this.prisma.college.findUnique({
+        where: {
+          id: collegeId,
+        },
+      });
+    const course =
+      await this.prisma.course.findFirst({
+        where: {
+          id: courseId,
+          collegeId: collegeId,
+        },
+      });
+
+    if (
+      !appProfile ||
+      !college ||
+      !course ||
+      appProfile.userId !== userId
+    ) {
+      throw new ForbiddenException(
+        'Access to resource is denied',
+      );
+    }
+
+    const temp_courses_added = {
+      '1': {
+        name: 'College Name',
+        coursesAdded: ['1', '2'],
+      },
+    };
+
+    return await this.prisma.applicationProfile.update(
+      {
+        where: {
+          id: applicationId,
+        },
+        data: {
+          coursesAdded: temp_courses_added,
         },
       },
     );

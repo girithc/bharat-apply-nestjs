@@ -72,7 +72,7 @@ export class ApplicationProfileController {
     collegeId: number,
   ) {
     console.log(
-      'App Profile Controller ',
+      'Add Course To Application Profile ',
       applicationId,
       ' ',
       collegeId,
@@ -86,6 +86,35 @@ export class ApplicationProfileController {
       collegeId,
     );
   }
+
+  @Patch(':id/:collegeId/:courseId')
+  addCourseToApplicationProfile(
+    @GetUser('id') userId: number,
+    @Body() dto: SampleDto,
+    @Param('id', ParseIntPipe)
+    applicationId: number,
+    @Param('collegeId', ParseIntPipe)
+    collegeId: number,
+    @Param('courseId', ParseIntPipe)
+    courseId: number,
+  ) {
+    console.log(
+      'App Profile Controller ',
+      applicationId,
+      ' ',
+      collegeId,
+      ' User Id: ',
+      userId,
+    );
+
+    return this.applicationProfileService.addCourseToApplicationProfile(
+      userId,
+      applicationId,
+      collegeId,
+      courseId,
+    );
+  }
+
   @Patch('remove/:id/:collegeId')
   removeCollegeFromApplicationProfile(
     @GetUser('id') userId: number,
