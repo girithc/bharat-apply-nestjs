@@ -565,10 +565,11 @@ export class ApplicationProfileService {
             courseId.toString(),
           )
         ) {
-          const indexToRemove =
-            courses_added[
-              collegeId.toString()
-            ].coursesAdded.indexOf('2');
+          const indexToRemove = courses_added[
+            collegeId.toString()
+          ].coursesAdded.indexOf(
+            courseId.toString(),
+          );
           if (indexToRemove !== -1) {
             courses_added[
               collegeId.toString()
@@ -596,7 +597,7 @@ export class ApplicationProfileService {
       }
     }
 
-    console.log('Courses Added ', courses_added);
+    console.log('Courses_Added ', courses_added);
 
     return await this.prisma.applicationProfile.update(
       {
