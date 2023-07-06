@@ -378,8 +378,9 @@ export class ApplicationProfileService {
       ) {
         console.log(
           'CollegeId Exists ',
-          collegeIds[collegeId.toString()]
-            .coursesAdded,
+          appProfile.coursesAdded[
+            collegeId.toString()
+          ].coursesAdded,
         );
       } else {
         console.log('CollegeId Does Not Exists');
