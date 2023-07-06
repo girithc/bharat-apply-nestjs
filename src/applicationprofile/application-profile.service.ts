@@ -358,8 +358,8 @@ export class ApplicationProfileService {
     }
 
     const temp_courses_added = {
-      '1': {
-        name: 'College Name',
+      [college.id]: {
+        name: [college.name],
         coursesAdded: ['1', '2'],
       },
     };
