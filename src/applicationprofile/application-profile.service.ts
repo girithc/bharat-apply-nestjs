@@ -369,21 +369,24 @@ export class ApplicationProfileService {
         coursesAdded: ['1', '2'],
       };
     } else {
-      courses_added[college.id] = {
-        name: [college.name],
-        coursesAdded: ['1', '100000'],
-      };
-
       const collegeIds = Object.keys(
         appProfile.coursesAdded,
       );
-      console.log('CollegeIds ', collegeIds);
+
       if (
         collegeIds.includes(collegeId.toString())
       ) {
-        console.log('CollegeId Exists');
+        console.log(
+          'CollegeId Exists ',
+          collegeIds[collegeId.toString()]
+            .coursesAdded,
+        );
       } else {
         console.log('CollegeId Does Not Exists');
+        courses_added[college.id] = {
+          name: [college.name],
+          coursesAdded: ['1', '100000'],
+        };
       }
     }
 
