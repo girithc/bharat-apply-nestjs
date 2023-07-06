@@ -489,6 +489,127 @@ export class ApplicationProfileService {
     );
   }
 
+  async removeCourseFromApplicationProfile(
+    userId: number,
+    applicationId: number,
+    collegeId: number,
+    courseId: number,
+  ) {
+    const appProfile =
+      await this.prisma.applicationProfile.findFirst(
+        {
+          where: {
+            id: applicationId,
+            userId: userId,
+          },
+        },
+      );
+    const college =
+      await this.prisma.college.findUnique({
+        where: {
+          id: collegeId,
+        },
+      });
+    const course =
+      await this.prisma.course.findFirst({
+        where: {
+          id: courseId,
+          collegeId: collegeId,
+        },
+      });
+
+    if (
+      !appProfile ||
+      !college ||
+      !course ||
+      appProfile.userId !== userId
+    ) {
+      throw new ForbiddenException(
+        'Access to resource is denied',
+      );
+    }
+
+    let courses_added = {};
+    courses_added = appProfile.coursesAdded;
+
+    //Empty JSON
+    if (
+      courses_added === null ||
+      Object.keys(courses_added).length === 0
+    ) {
+      return {
+        message:
+          'Course Already Removed From Application Profile',
+      };
+    }
+    //NOT EMPTY JSON
+    else {
+      const collegeIds = Object.keys(
+        courses_added,
+      );
+
+      // INCLUDES COLLEGEID
+      if (
+        collegeIds.includes(collegeId.toString())
+      ) {
+        console.log(
+          'CollegeId Exists ',
+          courses_added[collegeId.toString()]
+            .coursesAdded,
+        );
+        // INCLUDES COURSEID
+        if (
+          courses_added[
+            collegeId.toString()
+          ].coursesAdded.includes(
+            courseId.toString(),
+          )
+        ) {
+          const indexToRemove =
+            courses_added[
+              collegeId.toString()
+            ].coursesAdded.indexOf('2');
+          if (indexToRemove !== -1) {
+            courses_added[
+              collegeId.toString()
+            ].coursesAdded.splice(
+              indexToRemove,
+              1,
+            );
+          }
+        }
+        // DOES NOT INCLUDE COURSEID
+        else {
+          return {
+            message:
+              'Course Already Removed From Application Profile',
+          };
+        }
+      }
+      // DOES NOT INCLUDE COLLEGEID
+      else {
+        console.log('CollegeId Does Not Exists');
+        return {
+          message:
+            'Course Already Removed From Application Profile',
+        };
+      }
+    }
+
+    console.log('Courses Added ', courses_added);
+
+    return await this.prisma.applicationProfile.update(
+      {
+        where: {
+          id: applicationId,
+        },
+        data: {
+          coursesAdded: courses_added,
+        },
+      },
+    );
+  }
+
   async editApplicationGradeTwelve(
     userId: number,
     appGradeId: number,

@@ -140,6 +140,34 @@ export class ApplicationProfileController {
     );
   }
 
+  @Patch('remove/:id/:collegeId/:courseId')
+  removeCourseFromApplicationProfile(
+    @GetUser('id') userId: number,
+    @Body() dto: SampleDto,
+    @Param('id', ParseIntPipe)
+    applicationId: number,
+    @Param('collegeId', ParseIntPipe)
+    collegeId: number,
+    @Param('courseId', ParseIntPipe)
+    courseId: number,
+  ) {
+    console.log(
+      'App Profile Controller ',
+      applicationId,
+      ' ',
+      collegeId,
+      ' User Id: ',
+      userId,
+    );
+
+    return this.applicationProfileService.removeCourseFromApplicationProfile(
+      userId,
+      applicationId,
+      collegeId,
+      courseId,
+    );
+  }
+
   @Get()
   getApplicationProfiles(
     @GetUser('id') userId: number,
