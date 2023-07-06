@@ -357,20 +357,23 @@ export class ApplicationProfileService {
       );
     }
 
-    let temp_courses_added = {};
-    const courses_added = appProfile.coursesAdded;
+    let courses_added = {};
+    courses_added = appProfile.coursesAdded;
 
     if (
       courses_added === null ||
       Object.keys(courses_added).length === 0
     ) {
-      temp_courses_added = {
-        [college.id]: {
-          name: [college.name],
-          coursesAdded: ['1', '2'],
-        },
+      courses_added[college.id] = {
+        name: [college.name],
+        coursesAdded: ['1', '2'],
       };
     } else {
+      courses_added[college.id] = {
+        name: [college.name],
+        coursesAdded: ['1', '100000'],
+      };
+
       const collegeIds = Object.keys(
         appProfile.coursesAdded,
       );
@@ -390,7 +393,7 @@ export class ApplicationProfileService {
           id: applicationId,
         },
         data: {
-          coursesAdded: temp_courses_added,
+          coursesAdded: courses_added,
         },
       },
     );
