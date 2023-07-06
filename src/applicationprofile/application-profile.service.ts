@@ -357,12 +357,28 @@ export class ApplicationProfileService {
       );
     }
 
-    const temp_courses_added = {
-      [college.id]: {
-        name: [college.name],
-        coursesAdded: ['1', '2'],
-      },
-    };
+    let temp_courses_added = {};
+
+    if (appProfile.coursesAdded) {
+      const collegeIds = Object.keys(
+        appProfile.coursesAdded,
+      );
+      console.log('CollegeIds ', collegeIds);
+      if (
+        collegeIds.includes(collegeId.toString())
+      ) {
+        console.log('CollegeId Exists');
+      } else {
+        console.log('CollegeId Does Not Exists');
+      }
+    } else {
+      temp_courses_added = {
+        [college.id]: {
+          name: [college.name],
+          coursesAdded: ['1', '2'],
+        },
+      };
+    }
 
     return await this.prisma.applicationProfile.update(
       {
