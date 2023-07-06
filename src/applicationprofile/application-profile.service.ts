@@ -387,6 +387,8 @@ export class ApplicationProfileService {
       }
     }
 
+    console.log('Courses Added ', courses_added);
+
     return await this.prisma.applicationProfile.update(
       {
         where: {
