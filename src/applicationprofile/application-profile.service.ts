@@ -360,6 +360,7 @@ export class ApplicationProfileService {
     let courses_added = {};
     courses_added = appProfile.coursesAdded;
 
+    //Empty JSON
     if (
       courses_added === null ||
       Object.keys(courses_added).length === 0
@@ -368,25 +369,50 @@ export class ApplicationProfileService {
         name: [college.name],
         coursesAdded: ['1', '2'],
       };
-    } else {
+    }
+    //NOT EMPTY JSON
+    else {
       const collegeIds = Object.keys(
-        appProfile.coursesAdded,
+        courses_added,
       );
 
+      // INCLUDES COLLEGEID
       if (
         collegeIds.includes(collegeId.toString())
       ) {
         console.log(
           'CollegeId Exists ',
-          appProfile.coursesAdded[
-            collegeId.toString()
-          ].coursesAdded,
+          courses_added[collegeId.toString()]
+            .coursesAdded,
         );
-      } else {
+        // INCLUDES COURSEID
+        if (
+          courses_added[
+            collegeId.toString()
+          ].coursesAdded.includes(
+            courseId.toString(),
+          )
+        ) {
+          return {
+            message:
+              'Course Already Added To Application Profile',
+          };
+        }
+        // DOES NOT INCLUDE COURSEID
+        else {
+          courses_added[
+            collegeId.toString()
+          ].coursesAdded.push(
+            courseId.toString(),
+          );
+        }
+      }
+      // DOES NOT INCLUDE COLLEGEID
+      else {
         console.log('CollegeId Does Not Exists');
         courses_added[college.id] = {
           name: [college.name],
-          coursesAdded: ['1', '100000'],
+          coursesAdded: [courseId.toString()],
         };
       }
     }
