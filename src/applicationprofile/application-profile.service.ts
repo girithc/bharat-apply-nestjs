@@ -358,8 +358,19 @@ export class ApplicationProfileService {
     }
 
     let temp_courses_added = {};
+    const courses_added = appProfile.coursesAdded;
 
-    if (appProfile.coursesAdded) {
+    if (
+      courses_added === null ||
+      Object.keys(courses_added).length === 0
+    ) {
+      temp_courses_added = {
+        [college.id]: {
+          name: [college.name],
+          coursesAdded: ['1', '2'],
+        },
+      };
+    } else {
       const collegeIds = Object.keys(
         appProfile.coursesAdded,
       );
@@ -371,13 +382,6 @@ export class ApplicationProfileService {
       } else {
         console.log('CollegeId Does Not Exists');
       }
-    } else {
-      temp_courses_added = {
-        [college.id]: {
-          name: [college.name],
-          coursesAdded: ['1', '2'],
-        },
-      };
     }
 
     return await this.prisma.applicationProfile.update(
