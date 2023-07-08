@@ -357,14 +357,15 @@ export class ApplicationProfileService {
       );
     }
 
-    let courses_added = {};
-    courses_added = appProfile.coursesAdded;
+    let courses_added = appProfile.coursesAdded;
 
     //Empty JSON
     if (
       courses_added === null ||
       Object.keys(courses_added).length === 0
     ) {
+      console.log('Courses Do Not Exist');
+      courses_added = {}
       courses_added[college.id] = {
         name: [college.name],
         coursesAdded: ['1', '2'],
@@ -372,6 +373,7 @@ export class ApplicationProfileService {
     }
     //NOT EMPTY JSON
     else {
+      console.log('Courses Exists')
       const collegeIds = Object.keys(
         courses_added,
       );
